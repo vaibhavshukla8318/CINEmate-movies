@@ -1,0 +1,9 @@
+.footer{
+    height: 20vh;
+    width: 100%;
+    background-color: darkgray;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+
+}

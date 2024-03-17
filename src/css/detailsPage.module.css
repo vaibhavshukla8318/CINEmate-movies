@@ -1,0 +1,161 @@
+.selectedItemContainer{
+  min-height: 100vh;
+  width: 98vw;
+  /* position: fixed; */
+  background-color:#2E2E31;
+  /* display: flex; */
+  overflow: hidden;
+  
+}
+.selectedItem{
+  padding: 10px;
+  margin-top: 13vh;
+  display: flex;
+  flex-direction: column;
+}
+.selectedItem .posterDetails{
+  /* height: 84vh; */
+  width: 90vw;
+  padding: 6px;
+  border-radius: 7px;
+  background-color: #7d6d6d;
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+.selectedItem img{
+  height: 50vh;
+  width: 30vw;
+  border-radius: 5px;
+}
+.selectedItem .posterDetails .details h2{
+  color: yellow;
+  margin-bottom: 10px;
+}
+
+.selectedItem .posterDetails .details p{
+  color:aliceblue;
+  font-size: 1.1rem;
+ 
+}
+.selectedItem .iframe{
+  position: unset;
+   transform: translate(0px);
+   min-width: 97vw;
+   min-height: 84vh;
+}
+
+
+.detailsContainer{
+  min-height: 100vh;
+  width: 100vw;
+  background-color:#2E2E31;
+  padding:15px;
+  padding-top: 17vh;
+  display: flex;
+  gap: 40px;
+}
+
+.detailsContainer img{
+  height: 53vh;
+  /* width: 17vw; */
+  max-width: 30vw;
+  border-radius: 5px;
+}
+
+.link{
+    text-decoration: none;
+    color: gray;
+}
+
+.detailsContainer h2{
+  font-size: 30px;
+  margin-top: 20px;
+  cursor: default;
+   text-transform: capitalize;
+   color: #FFFFFF;
+}
+
+.watch{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.watch .watchNow,
+.watch .watchLater{
+  height: 35px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  color: #FFDD95;
+  background-color: cadetblue;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+.watch .watchNow{
+  background-color: #FFDD95;
+  color: black;
+}
+.plot{
+  max-height: 17vh;
+  max-width: 65vw;
+  overflow-y: auto;
+  text-align: justify;
+}
+.plot::-webkit-scrollbar{
+  display: none;
+}
+p{
+  font-size: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: #FFFFFF;
+}
+.year, .genre{
+  margin: 0;
+  font-size: 1.5rem;
+  color: orange;
+  font-weight: 600;
+}
+ul{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ul li{
+  list-style-type: none;
+}
+span,
+ul li{
+  font-size: 1.1rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+
+@media(max-width:800px){
+  .detailsContainer{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+  }
+  .detailsContainer img{
+      max-width: 90vw;
+      height: 53vh;
+      /* height: 500px; */
+  }
+  .details{
+    text-align: left;
+  }
+  .posterDetails{
+    display: flex;
+    flex-direction: column;
+  }
+  .posterDetails img{
+    width: 100%;
+  }
+}

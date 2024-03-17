@@ -1,0 +1,123 @@
+.home{
+    padding-top: 11vh;
+    /* display: flex; */
+    overflow-y: hidden;
+}
+
+/* sidebar */
+.sidebar{
+    height: 100vh;
+    min-width: 3.5vw;
+    background-color: rgb(102, 150, 150);
+    padding:90px 8px;
+    display: flex;
+    flex-direction: column;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: fixed;
+    z-index:2;
+}
+.sidebar::-webkit-scrollbar{
+    display: none;
+}
+.sidebar:hover{
+    min-width: 12vw;
+    background-color: rgb(41, 51, 84);
+    margin-right: 300px;
+    transition: all 0.2s ease-in-out;
+}
+.sidebar:hover .displayBlock{
+    display: none;
+}
+.sidebar:hover .displayNone{
+    display: flex;
+    flex-direction: column;
+}
+.sidebar .displayBlock{
+    display: flex;
+    flex-direction: column;
+}
+.sidebar .displayBlock img{
+    margin: 15px 0;
+}
+.sidebar .displayNone{
+    display: none;
+}
+.sidebar .displayNone div{
+    height: 35px;
+    width: 11.2vw;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    cursor: pointer;
+    margin: 11px 0;
+    padding-left: 10px;
+    border-radius: 15px;
+}
+.sidebar .displayNone div:hover{
+    background-color:gray;
+}
+
+.sidebar .displayNone div span{
+   font-size: 1.1rem;
+   font-weight: 600;
+   color: beige;
+}
+
+.sidebar .displayBlock img,
+.sidebar .displayNone img{
+    height: 30px;
+    width: 30px;
+}
+.link{
+    text-decoration: none;
+}
+
+
+/* content */
+.content{
+    background-color: rgb(25, 36, 70);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-left:3vw;
+    overflow: hidden;
+    z-index: 1;
+}
+.content::-webkit-scrollbar{
+    display: none;
+}
+
+.message {
+    display: none; /* Hide the message by default */
+  }
+
+@media(max-width:500px){
+    .home{
+        display: none;
+    }
+    .message {
+        display: block; /* Show the message when screen width is 500px or less */
+        text-align: center; /* Center the message */
+        padding: 10px; /* Add some padding for better readability */
+        background-color: #ffcccc; /* Background color for the message */
+      }
+      .message p{
+          color: #ff0000!important; /* Text color */
+      }
+}
+
+
+
+  
+  @media (min-width: 500px) and (max-width:1140px) {
+     .sidebar span{
+        display: none;
+     }
+    .sidebar .displayNone{
+        margin-left: 20px;
+    }
+     .content{
+        padding-left: 1vw;
+     }
+  }
+  
