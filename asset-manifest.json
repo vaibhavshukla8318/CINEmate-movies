@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/CINEmate-movies/static/css/main.7be3f292.css",
-    "main.js": "/CINEmate-movies/static/js/main.318e179e.js",
+    "main.js": "/CINEmate-movies/static/js/main.45b64ac9.js",
     "index.html": "/CINEmate-movies/index.html",
     "main.7be3f292.css.map": "/CINEmate-movies/static/css/main.7be3f292.css.map",
-    "main.318e179e.js.map": "/CINEmate-movies/static/js/main.318e179e.js.map"
+    "main.45b64ac9.js.map": "/CINEmate-movies/static/js/main.45b64ac9.js.map"
   },
   "entrypoints": [
     "static/css/main.7be3f292.css",
-    "static/js/main.318e179e.js"
+    "static/js/main.45b64ac9.js"
   ]
 }
