@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/CINEmate-movies/static/css/main.7be3f292.css",
+    "main.js": "/CINEmate-movies/static/js/main.318e179e.js",
+    "index.html": "/CINEmate-movies/index.html",
+    "main.7be3f292.css.map": "/CINEmate-movies/static/css/main.7be3f292.css.map",
+    "main.318e179e.js.map": "/CINEmate-movies/static/js/main.318e179e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7be3f292.css",
+    "static/js/main.318e179e.js"
+  ]
+}
