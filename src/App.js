@@ -46,7 +46,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename="/CINEmate-movies">
         <Routes>
           <Route  path="/"  element={<Home/>} />
           {/* <Route path="/" element={<Register/>} /> */}
