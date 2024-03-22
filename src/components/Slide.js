@@ -1,111 +1,137 @@
-import React from 'react';
-import BackwardArrowImage from '../images/backword.png'; 
-import ForwardArrowImage from '../images/forword.png';
+
+
+import React, { useState, useEffect } from 'react';
 import style from '../css/Slide.module.css';
-import { SlideData } from './Data';
-import {Link} from "react-router-dom";
+import Star from '../images/stars.png'
 
-export default class Slide extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      slidePosition: 0,
-      slideDetails: SlideData[0],
-      isPlaying: false,
-    };
-  }
+const Slide = () => {
+  const [movies, setMovies] = useState([]);
+  const [slidePosition, setSlidePosition] = useState(0);
+  const [slideDetails, setSlideDetails] = useState({});
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [hoveredImageIndex, setHoveredImageIndex] = useState(null); 
+  const [videos, setVideos] = useState({});
 
-  handleSlide = (direction) => {
-    const totalImages = SlideData.length;
-    const { slidePosition } = this.state;
-
-    if (direction === 'left' && slidePosition > 0) {
-      this.setState({ slidePosition: slidePosition - 1 });
-    } else if (direction === 'right' && slidePosition < totalImages - 3) {
-      this.setState({ slidePosition: slidePosition + 1 });
+  const fetchData = async () => {
+    try {
+      const response = await fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=fe3c2c41cac485e991fabd53535d760b");
+      const data = await response.json();
+      setMovies(data.results);
+      setSlideDetails(data.results[0]);
+      data.results.forEach(movie => {
+        fetchVideosForMovie(movie.id);
+      });
+    } catch (error) {
+      console.error('Error fetching movies:', error);
     }
   };
 
-  clickImage = (index) => {
-    this.setState({ slideDetails: SlideData[index] });
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchVideosForMovie = async (movieId) => {
+    try {
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=fe3c2c41cac485e991fabd53535d760b&language=en-US`);
+      const data = await response.json();
+      if (data.results.length > 0) {
+        setVideos(prevVideos => ({
+          ...prevVideos,
+          [movieId]: data.results,
+        }));
+      }
+    } catch (error) {
+      console.error(`Error fetching videos for movie ${movieId}:`, error);
+    }
   };
 
-  togglePlay = () => {
-    this.setState((prevState) => ({ isPlaying: !prevState.isPlaying }));
+  // const handleSlide = (direction) => {
+  //   if (direction === 'left' && slidePosition > 0) {
+  //     setSlidePosition(slidePosition - 1);
+  //   } else if (direction === 'right' && slidePosition < movies.length - 3) {
+  //     setSlidePosition(slidePosition + 1);
+  //   }
+  // };
+
+  const clickImage = (index) => {
+    setSlideDetails(movies[index]);
   };
 
-  closeVideo = () => {
-    this.setState({ isPlaying: false });
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
   };
 
-  render() {
-    const { slideDetails, slidePosition, isPlaying } = this.state;
+  const closeVideo = () => {
+    setIsPlaying(false);
+  };
 
-    return (
-      <>
-        <div className={style.slide}>
-          <div className={style.slideDetails} style={{ backgroundImage: `url(${slideDetails.poster})`}}>
-            <h2>{slideDetails.title}</h2>
-            <div className={style.seasonContainer}>
-              <p className={style.year}>{slideDetails.year} &nbsp; &#x2022;</p>
-              <p className={style.season}>{slideDetails.season} &nbsp; &#x2022;</p>
-              <p className={style.language}>{slideDetails.language}</p>
-            </div>
-            <p className={style.plot}>{slideDetails.plot}</p>
-            <ul className={style.genre}>
-              <p>Genre:</p>
-              {slideDetails.genre.map((genre, index) => (
-                <li key={index}>{genre}</li>
-              ))}
-            </ul>
-            <div className={style.slideWatch}>
-              <div className={style.watchNow}>
-                <div>
-                  <p className={style.watch} onClick={this.togglePlay}>
-                    {isPlaying ? 'Pause' : 'Play'}
-                  </p>
-                  {isPlaying && (
-                    <>
-                    <iframe src={slideDetails.video} frameborder="0" allowfullscreen></iframe>
-                    <p className={style.crossIcon} onClick={this.closeVideo}>X</p>
-                    </>
-                
-                  )}
-                </div>
-                <p className={style.add}>+</p>
-              </div>
-              <div className={style.miniSlideContainer}>
-                {/* <img
-                  className={style.backwordArrow}
-                  src={BackwardArrowImage}
-                  onClick={() => this.handleSlide('left')}
-                  alt="backwardArrow"
-                /> */}
-                <div className={style.miniSlide}>
-                  {SlideData.map((image, index) => (
-                    <>
-                      <img
-                        key={index}
-                        src={image.poster}
-                        className={style.miniSlideImage}
-                        alt="img"
-                        // style={{ transform: `translateX(${slidePosition * -9}vw)` }}
-                        onClick={() => this.clickImage(index)}
-                      />
-                    </>
-                  ))}
-                </div>
-                {/* <img
-                  className={style.forwordArrow}
-                  src={ForwardArrowImage}
-                  onClick={() => this.handleSlide('right')}
-                  alt="forwardArrow"
-                /> */}
-              </div>
+  const handleImageHover = (index) => {
+    setHoveredImageIndex(index);
+  };
+
+
+
+  return (
+    <>
+      <div className={style.slide} style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${slideDetails.poster_path})` }}>
+
+        <h2>{slideDetails.title}</h2>
+        <div className={style.seasonContainer}>
+          <p className={style.year}>{slideDetails.release_date} &nbsp; &#x2022;</p>
+          <p className={style.language}>{slideDetails.original_language}</p>
+        </div>
+        <p className={style.plot}>{slideDetails.overview}</p>
+        <div className={style.ratingContainer}>
+          <span className={style.rating}> 
+             <img src={Star}/>
+            {slideDetails.vote_average}
+          </span>
+          <span className={style.ratingCount}> Count: {slideDetails.vote_count}</span>
+        </div>
+
+        <div className={style.slideWatch}>
+          <div className={style.watchNow}>
+            <div>
+              <p className={style.watch} onClick={togglePlay}>
+                {isPlaying ? 'Pause' : 'Play'}
+              </p>
+              {isPlaying && videos[slideDetails.id] && videos[slideDetails.id].length > 0 && (
+                  <>
+                  <iframe className={style.iframe} src={`https://www.youtube.com/embed/${videos[slideDetails.id][0].key}`} frameBorder="0" allowFullScreen title="video"></iframe>
+                  <p className={style.crossIcon} onClick={closeVideo}>X</p>
+                </>
+                )}
             </div>
           </div>
+          <div className={style.miniSlideContainer}>
+            {movies.map((movie, index) => (
+              <div
+                key={index}
+                className={style.miniSlide}
+                onMouseEnter={() => handleImageHover(index)} // Add mouse enter event handler
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  className={`${style.miniSlideImage} ${index === slidePosition ? style.selected : ''} ${index === hoveredImageIndex ? style.hovered : ''}`} // Add conditional styling for hovered image
+                  alt={movie.title}
+                  onClick={() => clickImage(index)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </>
-    );
-  }
-}
+
+        <div className={style.slideDetails}>
+
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Slide;
+
+
+
+
+

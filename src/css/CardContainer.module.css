@@ -1,5 +1,6 @@
 /* General Container */
-.cardContainer {
+.cardContainer,
+.categoryContainer {
   /* max-width: 93vw; */
   /* max-height: 30vh; */
   display: flex;
@@ -8,12 +9,25 @@
   border-radius: 10px;
 }
 
+.categoryContainer{
+  background-color: #0D1524;
+  border-radius: unset;
+ 
+}
+.categoryContainer div:nth-child(1){
+  padding-top: 55px;
+}
+
+.categoryContainer .topContainer{
+  background-color: unset;
+}
+
 /* Top Container */
 .topContainer {
   display: flex;
   justify-content: space-between;
   padding: 3px 28px;
-  background-color: #333; 
+  /* background-color: #333;  */
   border-top-left-radius: 10px; 
   border-top-right-radius: 10px; 
 }
@@ -50,13 +64,22 @@
   display: none;
 }
 /* Poster Image */
+
 .poster {
   height: 150px;
   width: 250px;
   
   border-radius: 10px;
   display: flex;
-  justify-content: center;align-items: center;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.poster:hover{
+  transform:translate(-15px, 7px) scale(1.15);
+  width: 280px;
+  /* height:140px */
 }
 
 /* Play Button */
@@ -67,23 +90,69 @@
 }
 
 /* Image Hover Container */
-.imageHoverContainer {
+.backgroundTransparent{
   position: absolute;
-  display: none;
-  gap: 10px;
+  background: transparent;
+  height: 165px;
+  width: 340px;
+  border-radius: 10px;
+  transform: translate(-35px, -195px);
+  transition: transform 0.4s ease-in-out;
+  z-index: 3;
 }
-
-.bottomContainer:hover .imageHoverContainer {
+.minimalOpacity{
+  height: 80px;
+  width: 340px;
+  position: absolute;
+  border-radius: 10px;
+  transform: translate(-35px, -114px);
+  transition: transform 0.4s ease-in-out;
+  background-color: gray;
+  opacity: 0.3;
+  z-index: 2;
+}
+.textContainer{
+  height: 80px;
+  /* width: 340px;   */
+  position: absolute;
   display: flex;
+  align-items: flex-end;
+  justify-content:space-around;
+  background: transparent;
+  border-radius: 10px;
+  transform: translate(-35px, -114px);
+  transition: transform 0.4s ease-in-out;
+  /* opacity: 0.5; */
+  z-index: 2;
+}
+.textContainer{
+  width: 340px;
 }
 
-.imageHoverContainer iframe {
+.title{
+  margin-bottom: 15px;
+  color: yellow;
+}
+/* .bottomContainer:hover .imageHoverContainer {
+  display: flex;
+} */
+
+ /* iframe, .para {
+  position: absolute;
   height: 150px;
   width: 300px;
   border-radius: 10px;
   transform: translate(-10px, -194px);
   transition: transform 0.4s ease-in-out;
   z-index: 30;
+} */
+iframe {
+  position: absolute;
+  height: 160px;
+  width: 340px;
+  border-radius: 10px;
+  transform: translate(-75px, -150px);
+  transition: transform 0.4s ease-in-out;
 }
 
 /* Forward and Backward Arrows */

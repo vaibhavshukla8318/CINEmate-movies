@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <div className={NavbarStyle.navbar}>
-        <Link to="/" className={NavbarStyle.left}>
+        <Link to="/home" className={NavbarStyle.left}>
             <img src='https://cdn-icons-png.flaticon.com/128/96/96406.png' alt='logoImage'/>
             <span><h3>CINEmate</h3></span>
         </Link>

@@ -38,13 +38,33 @@
   font-size: 1.1rem;
  
 }
+  .rating{
+    display:flex;
+    gap:10px
+  }
+  .rating img{
+    height: 30px;
+    width: 30px;
+  }
+
 .selectedItem .iframe{
   position: unset;
    transform: translate(0px);
    min-width: 97vw;
    min-height: 84vh;
 }
-
+.bottmIframeContainer{
+  display: flex;
+}
+.bottmIframe{
+  
+  position: unset;
+   transform: translate(0px);
+  margin: 10px;
+   width: 30vw;
+   height: 30vh;
+  text-align: center;
+}
 
 .detailsContainer{
   min-height: 100vh;

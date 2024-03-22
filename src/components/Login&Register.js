@@ -44,7 +44,7 @@ export function Login() {
                     <button type="submit">Submit</button>
                 </form>
                 <p>
-                    You don't have an account? <Link to="/">Register</Link>
+                    You don't have an account? <Link to="/home">Register</Link>
                 </p>
             </div>    
         </div>

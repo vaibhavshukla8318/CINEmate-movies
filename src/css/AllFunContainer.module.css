@@ -1,16 +1,53 @@
-.cardContainer{
+.cardContainer,
+.cardContainerTeaser,
+.category{
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-left: 2.1vw;
-  padding-left: 20px;
-  background-color:#2E2E31;
+  padding-left: 5vw;
+  padding-top: 40px;
+  /* background-color:#2E2E31; */
+  background-color:#081732;
   position: fixed;
+
 }
 
+.category{
+  padding-left: unset;
+}
+
+.cardContainerTeaser{
+  align-items: unset;
+}
+
+.linkContainer{
+  display: flex;
+  gap: 30px;
+}
+
+.linkContainer .link{
+  color:aliceblue;
+  text-decoration: none;
+  font-weight: 500;
+  height: 30px;
+  width: 80px;
+  /* background-color: #ce5050; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  transition: all 0.3s ease-in-out;
+}
+.linkContainer .link:hover{
+  background-color: #15ad8a;
+ color:#0c0505;
+}
+.linkContainer .link:focus{
+  background-color: red;
+}
+ 
 h1{
   color: aliceblue;
   margin-bottom: 20px;
@@ -122,6 +159,29 @@ h1{
 
   .details p{
     margin: -3px;
+  }
+
+  .pagination{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #fff; */
+    gap: 30px;
+  }
+
+  .pagination button{
+    height: 30px;
+    width: 80px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+
+  }
+
+  .pagination button:hover{
+    /* background-color: red; */
   }
 
 .iframeContainer{

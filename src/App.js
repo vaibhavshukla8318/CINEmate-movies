@@ -1,11 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import style from './App.module.css';
+import './App.module.css';
+import LandingPage from './components/LandingPage';
 import Home from './components/Home';
-import {Login, Register, DeleteAccountPage} from './components/Login&Register';
+import Footer from './components/Footer';
+// import {Login, Register, DeleteAccountPage} from './components/Login&Register';
 import {TeaserContainer ,AnimeContainer, MoviesContainer, WebSeriesContainer} from './components/AllFunContainer';
-import Play from './components/Play';
-import {PageDetailsTeaser ,PageDetailsAnime, PageDetailsMovies, PageDetailsWebSeries} from './components/DetailsPage';
+import {PageDetailsAnimePlay, PageDetailsMoviesPlay, PageDetailsWebSeriesPlay} from './components/Play';
+import {PageDetailsTeaserWebSearch ,PageDetailsTeaserSearch ,PageDetailsTeaser ,PageDetailsAnime, PageDetailsMovies, PageDetailsWebSeries} from './components/DetailsPage';
+import { MovieTeaser, WebSeriesTeaser } from './components/Trailer';
+import Category from './components/CategoryContainer';
+import SeriesTeaserContainer from './components/CategorySeriesContainer';
+import  {UpcomingMovieTeaser, NowPlayingMovieTeaser, PopularMovieTeaser, TopRatedMovieTeaser}  from './components/CategoryMovies';
+import { AiringTodaySeriesTeaser, OnTheAirSeriesTeaser, PopularSeriesTeaser, TopRatedSeriesTeaser } from './components/CategorySeries';
 import WatchLaterPage from './components/MySpace';
 
 function App() {
@@ -48,25 +55,54 @@ function App() {
     <>
       <BrowserRouter basename="/CINEmate-movies">
         <Routes>
-          <Route  path="/"  element={<Home/>} />
+          <Route  path="/"  element={<LandingPage/>} />
+          <Route  path="/home"  element={<Home/>} />
           {/* <Route path="/" element={<Register/>} /> */}
           {/* <Route path="/login" element={<Login/>} /> */}
           {/* <Route path="/deleteAccount" element={<DeleteAccountPage/>} /> */}
 
-          <Route path="/teaser" element={<TeaserContainer/>} />
-          <Route path="/play" element={<Play/>} />
           
+          {/* Media PLAYER  page(Play Page) */}
+          <Route path="/teaser" element={<TeaserContainer/>} />
+          <Route path="/playAnime/:itemId" element={<PageDetailsAnimePlay/>} />
+          <Route path="/playMovies/:itemId" element={<PageDetailsMoviesPlay/>} />
+          <Route path="/playWebSeries/:itemId" element={<PageDetailsWebSeriesPlay/>} />
+          
+          {/* Content Details page with Poster(Single Data)(Details Page)*/}
+          <Route path="/searchWebTeaser/:itemId" element={<PageDetailsTeaserWebSearch/>} />
+          <Route path="/searchTeaser/:itemId" element={<PageDetailsTeaserSearch/>} />
           <Route path="/detailsTeaser/:itemId" element={<PageDetailsTeaser />} />
           <Route path="/detailsAnime/:itemId" element={<PageDetailsAnime addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
           <Route path="/detailsMovies/:itemId" element={<PageDetailsMovies addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
           <Route path="/detailsWebSeries/:itemId" element={<PageDetailsWebSeries addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
 
+          {/* Page For AllFunContainer Container*/}
           <Route path="/anime" element={<AnimeContainer addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
           <Route path="/movies" element={<MoviesContainer addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>}/>
-          {/* <Route path="/webSeries" element={<WebSeriesContainer addToWatchLater={addToWatchLater}/>}/> */}
           <Route path="/webSeries" element={<WebSeriesContainer addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems} />} />
 
+          {/* Trailer Page */}
+          <Route path="/moviesTrailerPage" element={<MovieTeaser/>} />
+          <Route path="/webSeriesTrailerPage" element={<WebSeriesTeaser/>} />
 
+          {/* Category */}
+          <Route path="/category" element={<Category/>} />
+          <Route path="/seriesTeaserContainer" element={<SeriesTeaserContainer/>} />
+
+
+          {/* CategoryContainer for movie */}
+          <Route path="/upcomingMovieTeaser" element={<UpcomingMovieTeaser/>} />
+          <Route path="/nowPlayingMovieTeaser" element={<NowPlayingMovieTeaser/>} />
+          <Route path="/popularMovieTeaser" element={<PopularMovieTeaser/>} />
+          <Route path="/topRatedMovieTeaser" element={<TopRatedMovieTeaser/>} />
+
+           {/* CategoryContainer for series */}
+           <Route path="/airingTodaySeriesTeaser" element={<AiringTodaySeriesTeaser/>} />
+          <Route path="/onTheAirSeriesTeaser" element={<OnTheAirSeriesTeaser/>} />
+          <Route path="/popularSeriesTeaser" element={<PopularSeriesTeaser/>} />
+          <Route path="/topRatedSeriesTeaser" element={<TopRatedSeriesTeaser/>} />
+
+          {/* Watch Later */}
           <Route
               path="/watch-later"
               element={<WatchLaterPage watchLaterItems={watchLaterItems} removeFromWatchLater={removeFromWatchLater} />}
@@ -75,7 +111,7 @@ function App() {
         </Routes>
       </BrowserRouter>
 
-      
+      {/* <Footer/> */}
     </>
   );
 }

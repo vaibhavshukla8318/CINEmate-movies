@@ -1,23 +1,215 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { TeaserData, AnimeData, MoviesData, WebSeriesData } from './Data';
 import Navbar from './Navbar';
 import style from '../css/detailsPage.module.css';
+import Star from '../images/stars.png'
 
 
 
-const togglePlay = (videoUrl, contentType) => {
-  if (contentType === 'teaser') {
-    window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=teaser`, '_self');
-  }
-  if (contentType === 'anime') {
-    window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=anime`, '_self');
-  } else if (contentType === 'movies') {
-    window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=movies`, '_self');
-  }
-   else if (contentType === 'webSeries') {
-    window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=webSeries`, '_self');
-  }
+// const togglePlay = (videoUrl, contentType) => {
+//   if (contentType === 'teaser') {
+//     window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=teaser`, '_self');
+//   }
+//   if (contentType === 'anime') {
+//     window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=anime`, '_self');
+//   } else if (contentType === 'movies') {
+//     window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=movies`, '_self');
+//   }
+//    else if (contentType === 'webSeries') {
+//     window.open(`/play?videoUrl=${encodeURIComponent(videoUrl)}&contentType=webSeries`, '_self');
+//   }
+// };
+
+
+
+
+// Using Api
+
+export const PageDetailsTeaserSearch = () => {
+  const [trailerDetails, setTrailerDetails] = useState(null);
+  const [videos, setVideos] = useState({});
+  const { itemId } = useParams();
+  
+  const API_URL = 'https://api.themoviedb.org/3';
+  const API_KEY = 'fe3c2c41cac485e991fabd53535d760b'; 
+
+
+  const fetchTrailerDetails = async () => {
+    try {
+      const response = await fetch(`${API_URL}/movie/${itemId}?api_key=${API_KEY}&language=en-US`);
+      const data = await response.json();
+      // console.log(data)
+      setTrailerDetails(data);
+    } catch (error) {
+      console.error('Error fetching trailer details:', error);
+    }
+  };
+
+
+  const fetchVideosForMovie = async (movieId) => {
+    try {
+      const response = await fetch(`${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`);
+      const data = await response.json();
+      if (data.results.length > 0) {
+        setVideos((prevVideos) => ({
+          ...prevVideos,
+          [movieId]: data.results,
+        }));
+      }
+    } catch (error) {
+      console.error(`Error fetching videos for movie ${movieId}:`, error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTrailerDetails();
+    // fetchTrailerDetailsWeb();
+    fetchVideosForMovie(itemId);
+  }, [itemId]);
+
+  return (
+    <div className={style.selectedItemContainer}>
+      <Navbar />
+      {trailerDetails && (
+        <div className={style.selectedItem}>
+          {videos[itemId]?.slice(0, 1).reverse().map((video) => (
+            <>
+              <iframe
+              key={video.key}
+                src={`https://www.youtube.com/embed/${video.key}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allowFullScreen
+                className={style.iframe}
+              ></iframe>
+            </>
+          ))}
+          <div className={style.posterDetails}>
+            <img src={`https://image.tmdb.org/t/p/w500${trailerDetails.poster_path}`} alt={trailerDetails.title} />
+            <div className={style.details}>
+              <h2>{trailerDetails.title}</h2>
+              <p>{trailerDetails.overview}</p>
+              <p className={style.rating}>
+                <img src={Star} />
+                {trailerDetails.vote_average}
+              </p>
+              <p>{trailerDetails.release_date}</p>
+              <p>{trailerDetails.genres.map(genre => genre.name).join(', ')}</p>
+            </div>
+          </div>
+          <div className={style.bottomIframeContainer}>
+          {videos[itemId]?.map((video) => (
+            <>
+              <iframe
+              key={video.key}
+                src={`https://www.youtube.com/embed/${video.key}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={style.bottmIframe}
+              ></iframe>
+            </>
+          ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+
+export const PageDetailsTeaserWebSearch = () => {
+  const [trailerDetails, setTrailerDetails] = useState(null);
+  const [videos, setVideos] = useState({});
+  const { itemId } = useParams();
+  
+  const API_URL = 'https://api.themoviedb.org/3';
+  const API_KEY = 'fe3c2c41cac485e991fabd53535d760b'; 
+
+  const fetchTrailerDetailsWeb = async () => {
+    try {
+      const response = await fetch(`${API_URL}/tv/${itemId}?api_key=${API_KEY}&language=en-US`);
+      const data = await response.json();
+      setTrailerDetails(data);
+    } catch (error) {
+      console.error('Error fetching trailer details:', error);
+    }
+  };
+
+  const fetchVideosForMovie = async (movieId) => {
+    try {
+      const response = await fetch(`${API_URL}/tv/${movieId}/videos?api_key=${API_KEY}&language=en-US`);
+      const data = await response.json();
+      if (data.results.length > 0) {
+        setVideos((prevVideos) => ({
+          ...prevVideos,
+          [movieId]: data.results,
+        }));
+      }
+    } catch (error) {
+      console.error(`Error fetching videos for movie ${movieId}:`, error);
+    }
+  };
+
+  useEffect(() => {
+    
+    fetchTrailerDetailsWeb();
+    fetchVideosForMovie(itemId);
+  }, [itemId]);
+
+  return (
+    <div className={style.selectedItemContainer}>
+      <Navbar />
+      {trailerDetails && (
+        <div className={style.selectedItem}>
+          {videos[itemId]?.slice(0, 1).map((video) => (
+            <>
+              <iframe
+                 key={video.key}
+                src={`https://www.youtube.com/embed/${video.key}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={style.iframe}
+              ></iframe>
+            </>
+          ))}
+          <div className={style.posterDetails}>
+            <img src={`https://image.tmdb.org/t/p/w500${trailerDetails.poster_path}`} alt={trailerDetails.title} />
+            <div className={style.details}>
+              <h2>{trailerDetails.name}</h2>
+              <p>{trailerDetails.first_air_date}</p>
+              <p>{trailerDetails.overview}</p>
+              <p className={style.rating}>
+                <img src={Star} />
+                {trailerDetails.vote_average}
+              </p>
+              <p>{trailerDetails.genres.map(genre => genre.name).join(', ')}</p>
+            </div>
+          </div>
+          <div className={style.bottomIframeContainer}>
+          {videos[itemId]?.map((video) => (
+            <>
+              <iframe
+              key={video.key}
+                src={`https://www.youtube.com/embed/${video.key}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className={style.bottmIframe}
+              ></iframe>
+            </>
+          ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export const PageDetailsTeaser = () => {
@@ -46,7 +238,6 @@ export const PageDetailsTeaser = () => {
   );
 }
 
-
 export const PageDetailsAnime = ({ addToWatchLater, watchLaterItems }) => {
 
   const { itemId } = useParams();
@@ -63,15 +254,16 @@ export const PageDetailsAnime = ({ addToWatchLater, watchLaterItems }) => {
       <div className={style.detailsContainer}>
         <img src={posterDetails.poster} alt={posterDetails.title} />
         <div className={style.details}>
-          <Link to="/" className={style.link}>Home</Link>
+          <Link to="/home" className={style.link}>Home</Link>
           <h2>{posterDetails.title}</h2>
           <div className={style.watch}>
-            <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'anime')}>Watch now</Link>
+            {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'anime')}>Watch now</Link> */}
+            <Link to={`/playAnime/${posterDetails.id}`} className={style.watchNow}>Watch now</Link>
             <div className={style.watchLater}>
                 {isItemInWatchLater(posterDetails) ? (
                     <p className={style.watchLater}>Added</p>
                   ) : (
-                    <p onClick={() => addToWatchLater(posterDetails)} >Add</p>
+                    <p onClick={() => addToWatchLater(posterDetails)} >Watch Later</p>
                   )}
               </div>
           </div>
@@ -91,7 +283,6 @@ export const PageDetailsAnime = ({ addToWatchLater, watchLaterItems }) => {
   );
 }
 
-
 export const PageDetailsMovies = ({ addToWatchLater, watchLaterItems }) => {
 
 
@@ -109,15 +300,16 @@ export const PageDetailsMovies = ({ addToWatchLater, watchLaterItems }) => {
       <div className={style.detailsContainer}>
         <img src={posterDetails.poster} alt={posterDetails.title} />
         <div className={style.details}>
-          <Link to="/" className={style.link}>Home</Link>
+          <Link to="/home" className={style.link}>Home</Link>
           <h2>{posterDetails.title}</h2>
           <div className={style.watch}>
-            <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'movies')}>Watch now</Link>
+            {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'movies')}>Watch now</Link> */}
+            <Link to={`/playMovies/${posterDetails.id}`} className={style.watchNow}>Watch now</Link>
             <div className={style.watchLater}>
                 {isItemInWatchLater(posterDetails) ? (
                     <p className={style.watchLater}>Added</p>
                   ) : (
-                    <p onClick={() => addToWatchLater(posterDetails)} >Add</p>
+                    <p onClick={() => addToWatchLater(posterDetails)} >Watch Later</p>
                   )}
               </div>
           </div>
@@ -153,15 +345,16 @@ export const PageDetailsWebSeries = ({ addToWatchLater, watchLaterItems }) => {
         <div className={style.detailsContainer}>
           <img src={posterDetails.poster} alt={posterDetails.title} />
           <div className={style.details}>
-            <Link to="/" className={style.link}>Home</Link>
+            <Link to="/home" className={style.link}>Home</Link>
             <h2>{posterDetails.title}</h2>
             <div className={style.watch}>
-              <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'webSeries')}>Watch now</Link>
+              {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'webSeries')}>Watch now</Link> */}
+              <Link to={`/playWebSeries/${posterDetails.id}`} className={style.watchNow}>Watch now</Link>
               <div className={style.watchLater}>
                 {isItemInWatchLater(posterDetails) ? (
                     <p className={style.watchLater}>Added</p>
                   ) : (
-                    <p onClick={() => addToWatchLater(posterDetails)} >Add</p>
+                    <p onClick={() => addToWatchLater(posterDetails)} >Watch Later</p>
                   )}
               </div>
             </div>
@@ -179,6 +372,5 @@ export const PageDetailsWebSeries = ({ addToWatchLater, watchLaterItems }) => {
     </>
   );
 }
-
 
 

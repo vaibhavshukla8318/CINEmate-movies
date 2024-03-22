@@ -8,17 +8,18 @@ import Sidebar from './Sidebar';
 import {Link} from 'react-router-dom'
 
 
-export class TeaserContainer extends React.Component { 
+export const TeaserContainer = () => { 
  
-  render() {
-
     return (
       <>
         <Sidebar />
-        <div className={style.cardContainer}>
-          <h1>Teaser</h1>
-          
-            <div className={style.imageContainer}>
+        <div className={style.cardContainerTeaser}>
+          <h1>Trending</h1>
+          <div className={style.linkContainer}>
+            <Link to='/moviesTrailerPage' className={style.link}>Movie</Link>
+            <Link to='/webSeriesTrailerPage' className={style.link}>TV</Link>
+          </div>
+            {/* <div className={style.imageContainer}>
                {TeaserData.slice().reverse().map((image) => (
                  <Link to={`/detailsTeaser/${image.id}`} className={style.posterContainer} key={image.id}>
                   <img
@@ -34,12 +35,13 @@ export class TeaserContainer extends React.Component {
                 </Link>
               ))}
             
-          </div>
+            </div> */}
         </div>
+            {/* <MovieTeaser/>    */}
       </>  
     );
   }
-}
+
 
 
 

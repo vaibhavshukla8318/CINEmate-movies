@@ -17,7 +17,7 @@ const Sidebar = () => {
         <img src={TV} alt="tvSeries"/>
       </div>
       <div className={style.displayNone}>
-          <Link to="/" className={style.link}>
+          <Link to="/home" className={style.link}>
             <div>
                 <img src={Home} alt="homeImage"/>
               <span>Home</span>
@@ -48,10 +48,12 @@ const Sidebar = () => {
               <span>TV Series</span>
             </div>
           </Link>
-        <div>
-          <img src={Catogory} alt="catogoryImage"/>
-          <span>Catogory</span>
-        </div>
+        <Link to="/category" className={style.link}>  
+          <div>
+            <img src={Catogory} alt="catogoryImage"/>
+            <span>Catogory</span>
+          </div>
+        </Link>
         <Link to="/watch-later" className={style.link}>
           <div>
           <img src={MySpace} alt="mySpace"/>

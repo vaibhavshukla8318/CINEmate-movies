@@ -113,6 +113,7 @@ export const Teaser = [
   },
   {
     id:2,
+    title:"Black Panther",
     poster:
     "https://static-koimoi.akamaized.net/wp-content/new-galleries/2022/11/black-panther-wakanda-forever-movie-review-002.jpg",   
     video: "https://www.youtube.com/embed/_Z3QKkl1WyM?autoplay=1"
@@ -160,6 +161,8 @@ export const Anime = [
   },
   {
     id:9,
+    title:"Jujutsu Kaisen",
+    year:2020,
     poster:
     "https://e1.pxfuel.com/desktop-wallpaper/401/823/desktop-wallpaper-jujutsu-kaisen-poster-jujutsu-kaisen.jpg",   
     video:"https://www.youtube.com/embed/f7R6NA4Yo00?autoplay=1"   
@@ -548,13 +551,20 @@ export const AnimeData = [
     video: "https://www.youtube.com/embed/giKGGDfT0DQ?autoplay=1"    
   },
   {
+
     id:5,
-    title: 'One Punch Man',  
+    title: 'One Punch Man',    
     type: "Anime",
     year: 2015,
+    season: 'Season',
+    language: 'Language', 
+     plot:
+      "One Punch Man follows the story of Saitama, a seemingly ordinary man who becomes a hero for fun. Despite defeating any opponent with a single punch, Saitama struggles with boredom due to the lack of challenge in his fights. He yearns for a worthy opponent who can provide him with the thrill of battle. Alongside his cyborg disciple, Genos, Saitama joins the Hero Association to seek recognition for his heroics. As they encounter various monsters and villains threatening humanity, Saitama's incredible strength and nonchalant attitude lead to  both comedic and action-packed adventures.",
+
+    genre: [' Action, Comedy, Parody, Sci-Fi, Superhero'],  
     poster:
     "https://www-allcitycanvas-com.cdn.ampproject.org/i/s/www.allcitycanvas.com/wp-content/uploads/2019/06/one-punch-man-road-hero-videojuego-horizontal.jpg",  
-    video: "https://www.youtube.com/embed/Poo5lqoWSGw?autoplay=1", 
+    video: "https://www.youtube.com/embed/Poo5lqoWSGw?autoplay=1",               
   },
   {
     id:6,
@@ -564,78 +574,6 @@ export const AnimeData = [
     poster:
     "https://images4.alphacoders.com/131/1319312.jpeg",   
     video: "https://www.youtube.com/embed/MH4pWlX4LqI?autoplay=1",
-  },
-  {
-    id:7,
-    title: 'Black Clover',
-    type: "Anime", 
-    year: 2017,
-    poster:
-    "https://images4.alphacoders.com/131/1319312.jpeg",   
-    video: "https://www.youtube.com/embed/MH4pWlX4LqI?autoplay=1",
-  },
-  {
-    id:8,
-    title: 'Attack on Titan', 
-    type: "Anime", 
-    year: 2013,
-    poster:
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEoawLOmfuQu_vwZpu9WiHeL9BNsW-KebW8w&usqp=CAU", 
-    video: "https://www.youtube.com/embed/LV-nazLVmgo?autoplay=1"  
-  },
-  {
-    id:9,
-    title: 'Solo leveling',   
-    type: "Anime",
-    year:2009,
-    poster:
-    "https://i0.wp.com/news.qoo-app.com/en/wp-content/uploads/sites/3/2023/03/Solo_Leveling_Arise_Website_Feature-1-1.jpg?w=1200&ssl=1",  
-    video: "https://www.youtube.com/embed/eqy85AL70PU?autoplay=1"  
-  },
-  {
-    id:10,
-    title: 'One Punch Man', 
-    type: "Anime", 
-    year: 2015,
-    poster:
-    "https://www-allcitycanvas-com.cdn.ampproject.org/i/s/www.allcitycanvas.com/wp-content/uploads/2019/06/one-punch-man-road-hero-videojuego-horizontal.jpg",  
-    video: "https://www.youtube.com/embed/Poo5lqoWSGw?autoplay=1", 
-  },
-  {
-    id:11,
-    title: 'Black Clover', 
-    type: "Anime",
-    year: 2017,
-    poster:
-    "https://images4.alphacoders.com/131/1319312.jpeg",   
-    video: "https://www.youtube.com/embed/MH4pWlX4LqI?autoplay=1",
-  },
-  {
-    id:12,
-    title: 'Black Clover',
-    type: "Anime", 
-    year: 2017,
-    poster:
-    "https://images4.alphacoders.com/131/1319312.jpeg",   
-    video: "https://www.youtube.com/embed/MH4pWlX4LqI?autoplay=1",
-  },
-  {
-    id:13,
-    title: 'Solo leveling', 
-    type: "Anime",  
-    year:2009,
-    poster:
-    "https://i0.wp.com/news.qoo-app.com/en/wp-content/uploads/sites/3/2023/03/Solo_Leveling_Arise_Website_Feature-1-1.jpg?w=1200&ssl=1",  
-    video: "https://www.youtube.com/embed/eqy85AL70PU?autoplay=1"  
-  },
-  {
-    id:14,
-    title: ' Jujutsu Kaisen',   
-    type: "Anime",
-    year:2020,
-    poster:
-    "https://e1.pxfuel.com/desktop-wallpaper/401/823/desktop-wallpaper-jujutsu-kaisen-poster-jujutsu-kaisen.jpg",   
-    video:"https://www.youtube.com/embed/f7R6NA4Yo00?autoplay=1"   
   },
 ]
 
@@ -729,7 +667,7 @@ export const WebSeriesData = [
   {
     id:1,
     title: "Shaitan",
-    type: "webSeries",
+    type: "WebSeries",
     year: 2023,
     plot: "The narrative focuses on the plight of her children who battle demons of different kinds and ultimately choose violence. The story is narrated from the point of view of Baali (Rishi) who is cornered in a police encounter after he threatens the home minister of the State.",
     poster:
@@ -739,7 +677,7 @@ export const WebSeriesData = [
   {
     id:2,
     title: "Breathe: Into the Shadows",
-    type: "webSeries",
+    type: "WebSeries",
     year: 2020,
     plot: "Dr. Avinash Sabharwal (Bachchan) finds his 6-year-old daughter Siya kidnapped by a masked man. The kidnapper demands that Sabharwal kills a man in order to get his daughter back. The plot revolves around the lengths Avinash will go to save his daughter.",
     poster:
@@ -749,7 +687,7 @@ export const WebSeriesData = [
   {
     id:3,
     title: "Mirzapur",
-    type: "webSeries",
+    type: "WebSeries",
     year: 2018,
     plot: "'Mirzapur' is the story of Kaleen Bhaiyya, the King Of Mirzapur vs the Pandit Brothers, Guddu, and Bablu.What initially begins as a battle for power, leading to the throne of Mirzapur, eventually shapes the destiny of the city, influencing its business and its politics.",
     poster:
@@ -760,7 +698,7 @@ export const WebSeriesData = [
   {
     id:4,
     title: "Aarya",
-    type: "webSeries",
+    type: "WebSeries",
     year: 2023,
     plot: "The story of Aarya revolves around Aarya Sareen, who is a caring mother and a loving wife. She is quite naïve however, and is unaware of the illegal business her husband is a part of. Things go bad for their family after Aarya's husband Tej Sareen, a pharma baron, is mysteriously killed.",
     poster:
@@ -771,7 +709,7 @@ export const WebSeriesData = [
   {
     id:5,
     title: "Asur 2",
-    type: "webSeries",
+    type: "WebSeries",
     year: 2023,
     plot: "Season 2 chronicles the rise of the dark side and continues the high-octane chase as the CBI is racing against time to gather evidence and hunt down the serial killer. “ The CBI is on a quest to chase down Shubh who is on a mission to prove that there's no good in the world and the devil/asur will take over humanity.",
     poster:
@@ -784,7 +722,7 @@ export const WebSeriesData = [
   {
     id:6,
     title: "Akhada",
-    type: "webSeries",
+    type: "WebSeries",
     year: 2022,
     plot: "A Young ambitious wrestler Karan falls prey to nepotism which leads him in to world of crime and criminals. A Young ambitious wrestler Karan falls prey to nepotism which leads him in to world of crime and criminals.",
     poster:

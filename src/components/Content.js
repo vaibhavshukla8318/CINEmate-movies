@@ -10,7 +10,7 @@ const Content = () => {
     <div className={style.content}>
       <Slide/>
       <CardContainer/>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   )
 }

@@ -1,26 +1,50 @@
-.slide{
+/* .slide{
   height: 89vh;
   display: flex;
   gap: 20px;
   padding: 10px;
+  background-color: green;
+  z-index: 2;
+} */
+.slide{
+  z-index: 1;
+  width:95.45vw;
+  height: 89vh;
+  display: flex;
+  flex-direction: column;
+  background-attachment: fixed;
+  padding: 40px 15px;
+  position: relative;
 }
 
-.slideDetails{
+/* .slideDetails{
+  z-index: 1;
   width:95.45vw;
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 40px 15px;
   border-radius: 10px;
-  background-size:cover;
-  background-position: center; 
-  background-repeat: no-repeat; 
   background-attachment: fixed;
-  background-color: green;
-  opacity: 1;
+  background: green;
+} */
+.slideDetails{
+  position: absolute;
+  z-index: 1;
+  width:100%;
+  opacity: 0.4;
+  height: 100%;
+  flex-direction: column;
+  border-radius: 10px;
+  background: black;
+  transition: all 0.5s ease-in-out;
+   transform: translate(-15px, -40px);
 }
-.slideDetails h2{
-  /* width: 100vw; */
+.slide:hover .slideDetails{
+  /* opacity: 0; */
+  width: 0;
+}
+.slide h2{
   height: 100px;
   color: rgb(244, 173, 8);
   margin-bottom: 3px;
@@ -30,29 +54,40 @@
   text-align: center;
   overflow: scroll;
 }
-.slideDetails h2::-webkit-scrollbar{
+.slide h2::-webkit-scrollbar{
   display: none;
 }
-.slideDetails div{
+.slide div{
   display: flex;
   text-align: left;
   gap: 10px;
 
 }
-.slideDetails p{
+.slide p{
   color: aliceblue;
   margin-top: 10px;
 
 }
-.slideDetails .plot{
+.slide .plot{
   width: 55vw;
   max-height: 15vh;
   overflow-y: auto;
 }
-.slideDetails .plot::-webkit-scrollbar{
+.slide .plot::-webkit-scrollbar{
   display: none;
 }
-.slideDetails .genre{
+
+.rating, .ratingCount{
+  display:flex;
+  justify-content:center;
+  align-items:center; 
+  gap:10px
+}
+.rating img{
+  height: 30px;
+  width: 30px;
+}
+.slide .genre{
   margin-top: 10px;
   color:#fff;
   display: flex;
@@ -61,26 +96,26 @@
 .genre p{
   font-size: 1.3rem;
 }
-.slideDetails .genre li{
+.slide .genre li{
   color: yellow;
   list-style-type: none;
   font-size: 1.1rem;
   padding-bottom: 3px;
 }
-.slideDetails .slideWatch{
+.slide .slideWatch{
   display: flex;
   justify-content: space-between;
   color: #fff;
   margin-top: auto;
 }                                                      
-iframe{
+.iframe{
+  z-index: 1;
   position: absolute;
-  /* position: fixed; */
   height: 65vh;
   width: 70vw;
- transform: translate( 100px,-360px);
+ transform: translate( 100px,-330px);
 }
-.slideDetails .slideWatch .watchNow .watch{
+.slide .slideWatch .watchNow .watch{
   background-color: antiquewhite;
   color:#000000;
   font-weight: 500;
@@ -92,13 +127,14 @@ iframe{
   align-items: center;
   border-radius: 7px;
 }
-.slideDetails .slideWatch .watchNow .watch:hover{
+.slide .slideWatch .watchNow .watch:hover{
   background-color: palegreen;
   transition: all .1s ease-in-out;
   cursor: pointer;
+  z-index: 3;
 }
 
-.slideDetails .slideWatch .watchNow .add{
+/* .slide .slideWatch .watchNow .add{
   background-color: whitesmoke;
   width: 50px;
   height: 50px;
@@ -109,12 +145,12 @@ iframe{
   border-radius: 7px;
   color: #000000;
 }
-.slideDetails .slideWatch .watchNow .add:hover{
+.slide .slideWatch .watchNow .add:hover{
   background-color: yellowgreen;
   transition: all .1s ease-in-out;
   cursor: pointer;
-}
-.miniSlide{
+} */
+.miniSlideContainer{
   width: 400px;
   max-height: 12vh;
   background-color: gray;
@@ -122,29 +158,27 @@ iframe{
   padding: 6px;
   display: flex;
   align-items: center;
-  overflow-x:scroll;
-  overflow-y: hidden; 
+  overflow-x: scroll; 
+  overflow-y: hidden;
 }
-
-.miniSlide::-webkit-scrollbar{
+.miniSlideContainer::-webkit-scrollbar{
   display: none;
 }
+
+.miniSlide:hover {
+  transform: scale(1.1);
+   opacity: 0.9;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; 
+  z-index: 2;
+}
+
 .miniSlide .miniSlideImage {
   height: 10.9vh;
-  width: 200px;
+  width: 100px;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
-  background-size: cover;
-  background-position: center;
-  background-repeat:no-repeat;
 }
-
-.miniSlide .miniSlideImage:hover {
-  opacity: 0.5;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-
 
 .forwordArrow,
 .backwordArrow{
@@ -167,7 +201,7 @@ iframe{
 
 @media(min-width:500px) and (max-width:700px){
 
-   .miniSlide{
+   .miniSlideContainer{
     width: 200px;
     max-height: 12vh;
     background-color: gray;
