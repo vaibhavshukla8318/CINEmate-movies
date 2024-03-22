@@ -75,12 +75,12 @@ const LandingPage = () => {
         {/* Everything under this container you have to write */}
         <div className={style.contentContainer}>
            <div className={style.container}>
-              <h1>Welcome to [Your Website Name]</h1>
+              <h1>Welcome to CINEmate</h1>
               <p className={style.paragraph}>
                 Your premier destination for captivating movie and series teasers! Step into a realm where every glimpse hints at thrilling adventures, heartwarming stories, and epic sagas waiting to be unraveled.
               </p>
               <p className={style.paragraph}>
-                At [Your Website Name], we understand the power of anticipation. That's why we've curated a collection of the most tantalizing teasers from upcoming movies and series, each one offering a tantalizing taste of the cinematic wonders to come. From pulse-pounding action sequences to poignant moments of emotion, our teasers are meticulously selected to ignite your curiosity and leave you eagerly counting down the days until release.
+                At CINEmate, we understand the power of anticipation. That's why we've curated a collection of the most tantalizing teasers from upcoming movies and series, each one offering a tantalizing taste of the cinematic wonders to come. From pulse-pounding action sequences to poignant moments of emotion, our teasers are meticulously selected to ignite your curiosity and leave you eagerly counting down the days until release.
               </p>
                 <Link to="/home" className={style.link}>
                   <div className={style.linkContainer}>
@@ -92,13 +92,13 @@ const LandingPage = () => {
               </p>
              
               <p className={style.paragraph}>
-                But the excitement doesn't end there. [Your Website Name] is your ultimate resource for staying ahead of the curve in the world of entertainment. With our regularly updated collection of teasers, you'll always be in the know about the latest and greatest in movies and series. Whether you're seeking sneak peeks at highly anticipated blockbusters or discovering hidden gems waiting to be uncovered, our teasers are your ticket to the forefront of cinematic excellence.
+                But the excitement doesn't end there. CINEmate is your ultimate resource for staying ahead of the curve in the world of entertainment. With our regularly updated collection of teasers, you'll always be in the know about the latest and greatest in movies and series. Whether you're seeking sneak peeks at highly anticipated blockbusters or discovering hidden gems waiting to be uncovered, our teasers are your ticket to the forefront of cinematic excellence.
               </p>
               <p className={style.paragraph}>
                 Join our community of passionate movie buffs and series aficionados as we come together to celebrate the art of the teaser. Share your thoughts, theories, and speculations with fellow fans, and immerse yourself in the excitement of anticipation as we eagerly await the release of these cinematic marvels.
               </p>
               <p className={style.paragraph}>
-                So, what are you waiting for? Dive into the world of [Your Website Name] and let your imagination run wild. With our curated collection of teasers, every click is a journey into the heart of cinematic magic. Welcome to [Your Website Name], where the adventure begins with just a teaser.
+                So, what are you waiting for? Dive into the world of CINEmate and let your imagination run wild. With our curated collection of teasers, every click is a journey into the heart of cinematic magic. Welcome to CINEmate, where the adventure begins with just a teaser.
               </p>
            </div>
 
