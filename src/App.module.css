@@ -18,3 +18,8 @@ code {
     monospace;
 }
 
+@media(max-width:500px){
+ .app{
+    display: none;
+}
+}

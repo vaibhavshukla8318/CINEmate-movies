@@ -152,7 +152,7 @@ const TeaserContainer = ({ title, linkPage, linkPlay, movies }) => {
 const CardContainer = () => {
   return (
     <>
-      <TeaserContainerAPI title="Teaser" linkPage="/teaser" linkPlay="/searchTeaser" />
+      <TeaserContainerAPI title="Teaser" linkPage="/moviesTrailerPage" linkPlay="/searchTeaser" />
       {/* <TeaserContainer title="Teaser" link="/teaser" movies={Teaser} /> */}
       <TeaserContainer title="Anime" linkPage="/anime" linkPlay="/playAnime" movies={AnimeData} />
       <TeaserContainer title="Movies" linkPage="/movies" linkPlay="/playMovies" movies={MoviesData} />

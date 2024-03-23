@@ -1,33 +1,43 @@
 .home{
+    width: 98.7vw;
+    height: auto;
     padding-top: 11vh;
     /* display: flex; */
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
+    background: #0F1014;
 }
 
-/* sidebar */
+/* sidebar */ 
 .sidebar{
     height: 100vh;
-    min-width: 3.5vw;
-    background-color: rgb(102, 150, 150);
-    padding:90px 8px;
+    /* min-width: 5vw; */
+    /* background-color: #0F1014; */
     display: flex;
     flex-direction: column;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     position: fixed;
-    z-index:2;
+    z-index:3;
+    /* opacity: 0.7; */
+    transition: all 0.5s ease-in-out;
+    background-color: transparent;
 }
 .sidebar::-webkit-scrollbar{
     display: none;
 }
 .sidebar:hover{
-    min-width: 12vw;
-    background-color: rgb(41, 51, 84);
-    margin-right: 300px;
-    transition: all 0.2s ease-in-out;
+    min-width: 15vw;
+    /* background-color: rgb(41, 51, 84); */
+    background-color: #0F1014;
+    /* margin-right: 300px;*/
+    /* transition: all 0.2s ease-in-out;  */
+    /* background-color: transparent; */
+    opacity: 0.7;
 }
+
 .sidebar:hover .displayBlock{
-    display: none;
+    display: none; 
+    /* background-color: red; */
 }
 .sidebar:hover .displayNone{
     display: flex;
@@ -36,12 +46,17 @@
 .sidebar .displayBlock{
     display: flex;
     flex-direction: column;
+    padding-top: 80px;
+    padding-left: 10px;
+    margin: 11px 0;
+    border-radius: 15px;
 }
 .sidebar .displayBlock img{
     margin: 15px 0;
 }
 .sidebar .displayNone{
     display: none;
+    padding-top: 80px;
 }
 .sidebar .displayNone div{
     height: 35px;
@@ -55,7 +70,7 @@
     border-radius: 15px;
 }
 .sidebar .displayNone div:hover{
-    background-color:gray;
+    background-color:red;
 }
 
 .sidebar .displayNone div span{
@@ -76,37 +91,17 @@
 
 /* content */
 .content{
-    background-color: rgb(25, 36, 70);
+    width: 100%;
+    background-color: #0F1014;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    margin-left:3vw;
+    /* margin-left:3vw; */
     overflow: hidden;
     z-index: 1;
 }
 .content::-webkit-scrollbar{
     display: none;
 }
-
-.message {
-    display: none; /* Hide the message by default */
-  }
-
-@media(max-width:500px){
-    .home{
-        display: none;
-    }
-    .message {
-        display: block; /* Show the message when screen width is 500px or less */
-        text-align: center; /* Center the message */
-        padding: 10px; /* Add some padding for better readability */
-        background-color: #ffcccc; /* Background color for the message */
-      }
-      .message p{
-          color: #ff0000!important; /* Text color */
-      }
-}
-
-
 
   
   @media (min-width: 500px) and (max-width:1140px) {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import style from '../css/Navbar.module.css';
 import errorImage from '../images/error.png';
@@ -9,6 +9,7 @@ const SearchComponent = () => {
   const [webTrailer, setWebTrailer] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
+  const searchRef = useRef(null);
 
   const fetchMovieTrailer = async () => {
     try {
@@ -30,12 +31,27 @@ const SearchComponent = () => {
     }
   };
 
+
   useEffect(() => {
     if (searchTerm.trim() !== '') {
       fetchMovieTrailer();
       fetchMovieTrailerWeb();
     }
   }, [searchTerm]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchTerm('');
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -53,11 +69,12 @@ const SearchComponent = () => {
         value={searchTerm}
         onChange={handleSearch}
         placeholder="Search..."
+        ref={searchRef}
       />
     
       {searchTerm && (
         <ul>
-          {TeaserData.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
+          {/* {TeaserData.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
             <Link key={item.id} to={`/detailsTeaser/${item.id}`} className={style.link}>
               <li key={item.id} onClick={() => handleItemClick(item)}>
                 <img src={item.poster} alt={item.title} />
@@ -66,7 +83,8 @@ const SearchComponent = () => {
                 <span className={style.type}>Teaser</span>
               </li>
             </Link>
-          ))}
+          ))} */}
+          
           {AnimeData.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
             <Link key={item.id} to={`/detailsAnime/${item.id}`} className={style.link}>
               <li key={item.id} onClick={() => handleItemClick(item)}>
@@ -132,3 +150,12 @@ const SearchComponent = () => {
 };
 
 export default SearchComponent;
+
+
+
+
+
+
+
+
+

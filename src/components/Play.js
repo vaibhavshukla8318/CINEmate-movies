@@ -42,6 +42,7 @@ import Navbar from './Navbar';
 import style from '../css/detailsPage.module.css';
 
 
+
 export const PageDetailsAnimePlay = () => {
 
   const { itemId } = useParams();
@@ -55,12 +56,15 @@ export const PageDetailsAnimePlay = () => {
           <iframe src={posterDetails.video} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
           <div className={style.posterDetails}>
             <img src={posterDetails.poster} alt={posterDetails.title} />
-            <div className={style.details}>
-              <h2>{posterDetails.title}</h2>
-               <p>{posterDetails.season}</p>
-               <p>{posterDetails.language}</p>
-               <p>{posterDetails.year}</p>
-              <p>{posterDetails.genre}</p>
+            <div className={style.linkContainer}>
+              <Link to="/home" className={style.link}>Home</Link>
+              <div className={style.details}>
+                <h2>{posterDetails.title}</h2>
+                <p>{posterDetails.season}</p>
+                <p>{posterDetails.language}</p>
+                <p>{posterDetails.year}</p>
+                <p>{posterDetails.genre}</p>
+              </div>
             </div>
           </div>
         {/* Add more details as needed */}
@@ -84,12 +88,15 @@ export const PageDetailsMoviesPlay = () => {
           <iframe src={posterDetails.video} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
           <div className={style.posterDetails}>
             <img src={posterDetails.poster} alt={posterDetails.title} />
-            <div className={style.details}>
-              <h2>{posterDetails.title}</h2>
-              <p>{posterDetails.season}</p>
-              <p>{posterDetails.language}</p>
-              <p>{posterDetails.year}</p>
-              <p>{posterDetails.genre}</p>
+            <div className={style.linkContainer}>
+              <Link to="/home" className={style.link}>Home</Link>
+              <div className={style.details}>
+                <h2>{posterDetails.title}</h2>
+                <p>{posterDetails.season}</p>
+                <p>{posterDetails.language}</p>
+                <p>{posterDetails.year}</p>
+                <p>{posterDetails.genre}</p>
+              </div>
             </div>
           </div>
         {/* Add more details as needed */}
@@ -113,12 +120,15 @@ export const PageDetailsWebSeriesPlay = () => {
           <iframe src={posterDetails.video} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
           <div className={style.posterDetails}>
             <img src={posterDetails.poster} alt={posterDetails.title} />
-            <div className={style.details}>
-              <h2>{posterDetails.title}</h2>
-              <p>{posterDetails.season}</p>
-              <p>{posterDetails.language}</p>
-              <p>{posterDetails.year}</p>
-              <p>{posterDetails.genre}</p>
+            <div className={style.linkContainer}>
+              <Link to="/home" className={style.link}>Home</Link>
+              <div className={style.details}>
+                <h2>{posterDetails.title}</h2>
+                <p>{posterDetails.season}</p>
+                <p>{posterDetails.language}</p>
+                <p>{posterDetails.year}</p>
+                <p>{posterDetails.genre}</p>
+              </div>
             </div>
           </div>
         {/* Add more details as needed */}

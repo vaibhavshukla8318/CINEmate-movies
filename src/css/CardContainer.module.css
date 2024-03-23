@@ -1,12 +1,18 @@
 /* General Container */
 .cardContainer,
 .categoryContainer {
+  /* width: 90%; */
   /* max-width: 93vw; */
   /* max-height: 30vh; */
   display: flex;
   flex-direction: column;
   gap: 10px;
   border-radius: 10px;
+
+  /* overflow: hidden; */
+}
+.cardContainer{
+  padding:0 56px;
 }
 
 .categoryContainer{
@@ -30,6 +36,8 @@
   /* background-color: #333;  */
   border-top-left-radius: 10px; 
   border-top-right-radius: 10px; 
+  /* padding-left: 70px; */
+  /* overflow: hidden; */
 }
 
 .topContainer h3 {
@@ -52,18 +60,19 @@
 
 /* Bottom Container */
 .bottomContainer {
+  flex :0 1 20%;
   display: flex;
   max-height: 28vh;
   gap: 10px;
   overflow: hidden;
-  margin-left:10px;
   border-bottom-left-radius: 10px; 
   border-bottom-right-radius: 10px;
 }
 .bottomContainer::-webkit-scrollbar{
   display: none;
 }
-/* Poster Image */
+
+
 
 .poster {
   height: 150px;
@@ -79,8 +88,8 @@
 .poster:hover{
   transform:translate(-15px, 7px) scale(1.15);
   width: 280px;
-  /* height:140px */
 }
+
 
 /* Play Button */
 .playButton {
@@ -168,7 +177,7 @@ iframe {
 }
 
 .forwordArrow {
-  transform: translateX(92vw);
+  transform: translateX(88vw);
 }
 
 .bottomContainer:hover .forwordArrow,

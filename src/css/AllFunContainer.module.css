@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 5vw;
+  padding-left: 7vw;
   padding-top: 40px;
   /* background-color:#2E2E31; */
   background-color:#081732;
@@ -33,7 +33,7 @@
   font-weight: 500;
   height: 30px;
   width: 80px;
-  /* background-color: #ce5050; */
+  /* background-color: red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,9 +44,10 @@
   background-color: #15ad8a;
  color:#0c0505;
 }
-.linkContainer .link:focus{
+
+/* .linkContainer .link:active{
   background-color: red;
-}
+} */
  
 h1{
   color: aliceblue;
@@ -241,4 +242,13 @@ h1{
 }
 .removeButton:hover{
    opacity: 1;
+}
+
+
+@media(min-width:500px) and (max-width:630px){
+  .posterContainer{
+     width: 70%;
+     height: 180px;
+     margin: 40px;
+  }
 }

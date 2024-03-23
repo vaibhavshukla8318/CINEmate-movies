@@ -8,39 +8,39 @@ import Sidebar from './Sidebar';
 import {Link} from 'react-router-dom'
 
 
-export const TeaserContainer = () => { 
+// export const TeaserContainer = () => { 
  
-    return (
-      <>
-        <Sidebar />
-        <div className={style.cardContainerTeaser}>
-          <h1>Trending</h1>
-          <div className={style.linkContainer}>
-            <Link to='/moviesTrailerPage' className={style.link}>Movie</Link>
-            <Link to='/webSeriesTrailerPage' className={style.link}>TV</Link>
-          </div>
-            {/* <div className={style.imageContainer}>
-               {TeaserData.slice().reverse().map((image) => (
-                 <Link to={`/detailsTeaser/${image.id}`} className={style.posterContainer} key={image.id}>
-                  <img
-                    src={image.poster}
-                    className={style.poster}
-                    alt="img"
-                  />
-                  <img className={style.playButton} src={Play} alt="Play"/>
-                  <div className={style.details}>
-                    <h3>{image.title}</h3>
-                    <p>{image.year}</p>
-                  </div>
-                </Link>
-              ))}
+//     return (
+//       <>
+//         <Sidebar />
+//         <div className={style.cardContainerTeaser}>
+//           <h1>Trending</h1>
+//           <div className={style.linkContainer}>
+//             <Link to='/moviesTrailerPage' className={style.link}>Movie</Link>
+//             <Link to='/webSeriesTrailerPage' className={style.link}>TV</Link>
+//           </div>
+//             {/* <div className={style.imageContainer}>
+//                {TeaserData.slice().reverse().map((image) => (
+//                  <Link to={`/detailsTeaser/${image.id}`} className={style.posterContainer} key={image.id}>
+//                   <img
+//                     src={image.poster}
+//                     className={style.poster}
+//                     alt="img"
+//                   />
+//                   <img className={style.playButton} src={Play} alt="Play"/>
+//                   <div className={style.details}>
+//                     <h3>{image.title}</h3>
+//                     <p>{image.year}</p>
+//                   </div>
+//                 </Link>
+//               ))}
             
-            </div> */}
-        </div>
-            {/* <MovieTeaser/>    */}
-      </>  
-    );
-  }
+//             </div> */}
+//         </div>
+//             {/* <MovieTeaser/>    */}
+//       </>  
+//     );
+//   }
 
 
 

@@ -1,0 +1,50 @@
+.mobileViewContainer {
+  display: none; /* Hide the container by default */
+}
+
+@media(max-width: 500px) {
+  .mobileViewContainer {
+    display: flex ; /* Show the container only on mobile devices */
+    align-items: center ;
+    justify-content: center ;
+    background-color: #f8d7da ; /* Set your desired background color */
+    width: 100vw ; /* Set width to fill the screen */
+    height: 100vh ; /* Set height to fill the viewport */
+    position: fixed ;
+    top: 0 ;
+    left: 0 ;
+    z-index: 9999 ; /* Ensure it's on top of other content */
+    overflow: hidden ;
+    animation: fadeIn 0.5s ease-in-out infinite; /* Example animation */
+  }
+
+  .content {
+    padding: 20px ;
+    text-align: center ;
+  }
+
+  .iconContainer {
+    margin-bottom: 20px ;
+  }
+
+  h1 {
+    color: #721c24 ; /* Set color for the header text */
+    font-size: 24px ;
+    margin-bottom: 10px ;
+  }
+
+  p {
+    color: #721c24 ; /* Set color for the paragraph text */
+    font-size: 16px ;
+    line-height: 1.5 ;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

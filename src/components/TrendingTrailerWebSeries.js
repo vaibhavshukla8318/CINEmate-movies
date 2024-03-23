@@ -4,7 +4,7 @@ import Play from '../images/play.png';
 import style from '../css/AllFunContainer.module.css';
 import Sidebar from './Sidebar';
 
-const TeaserContainer = ({  trailers, link }) => { 
+const TeaserContainer = ({  trailers, link, handleNextPage, handlePrevPage, currentPage }) => { 
 
   return (
     <>
@@ -13,7 +13,7 @@ const TeaserContainer = ({  trailers, link }) => {
         <h1>Trending</h1>
         <div className={style.linkContainer}>
           <Link to='/moviesTrailerPage' className={style.link}>Movie</Link>
-          <Link to='/webSeriesTrailerPage' className={style.link}>TV</Link>
+          <Link to='/webSeriesTrailerPage' className={style.link} style={{color:"red"}}>TV</Link>
         </div>
         <div className={style.imageContainer}>
           {trailers.map((movie) => ( 
@@ -36,43 +36,24 @@ const TeaserContainer = ({  trailers, link }) => {
             </Link>
           ))}
         </div>
+        <div className={style.pagination}>
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>Previous</button>
+          <button onClick={handleNextPage}>Next</button>
+        </div>
       </div>  
     </>  
-  );
-};
-
-export const MovieTeaser = () => {
-  const [trailers, setTrailers] = useState([]);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?api_key=fe3c2c41cac485e991fabd53535d760b');
-        const data = await response.json();
-   
-        setTrailers(data.results);
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
-    };
-
-    fetchMovies();
-  }, []);
-
-  return (
-    <TeaserContainer  trailers={trailers} link="/searchTeaser" />
-   
   );
 };
 
 
 export const WebSeriesTeaser = () => {
   const [trailers, setTrailers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
-    const fetchMovies = async () => {
+ 
+    const fetchMovies = async (pageNumber = 1) => {
       try {
-        const response = await fetch('https://api.themoviedb.org/3/trending/tv/day?api_key=fe3c2c41cac485e991fabd53535d760b');
+        const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=fe3c2c41cac485e991fabd53535d760b&page=${pageNumber}`);
         const data = await response.json();
         console.log(data)
         setTrailers(data.results);
@@ -81,11 +62,28 @@ export const WebSeriesTeaser = () => {
       }
     };
 
+    const handleNextPage = () => {
+      fetchMovies(currentPage + 1);
+    };
+  
+    const handlePrevPage = () => {
+      if (currentPage > 1) {
+        fetchMovies(currentPage - 1);
+      }
+    };
+
+    useEffect(() => {
     fetchMovies();
   }, []);
 
   return (
-    <TeaserContainer trailers={trailers} link="/searchWebTeaser"/>
+    <TeaserContainer 
+    trailers={trailers} 
+    link="/searchWebTeaser"
+    handleNextPage={handleNextPage}
+    handlePrevPage={handlePrevPage}
+    currentPage={currentPage}
+    />
   );
 };
 

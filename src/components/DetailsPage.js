@@ -212,31 +212,31 @@ export const PageDetailsTeaserWebSearch = () => {
   );
 };
 
-export const PageDetailsTeaser = () => {
+// export const PageDetailsTeaser = () => {
 
-  const { itemId } = useParams();
-  const posterDetails = TeaserData.find(item => item.id === parseInt(itemId));
+//   const { itemId } = useParams();
+//   const posterDetails = TeaserData.find(item => item.id === parseInt(itemId));
 
-  return (
-    <div className={style.selectedItemContainer}>
-      <Navbar />
-      {posterDetails && (
-        <div className={style.selectedItem}>
-          <iframe src={posterDetails.video} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
-          <div className={style.posterDetails}>
-            <img src={posterDetails.poster} alt={posterDetails.title} />
-            <div className={style.details}>
-              <h2>{posterDetails.title}</h2>
-              <p>{posterDetails.year}</p>
-              <p>{posterDetails.genre}</p>
-            </div>
-          </div>
-        {/* Add more details as needed */}
-      </div>
-      )};
-    </div>
-  );
-}
+//   return (
+//     <div className={style.selectedItemContainer}>
+//       <Navbar />
+//       {posterDetails && (
+//         <div className={style.selectedItem}>
+//           <iframe src={posterDetails.video} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
+//           <div className={style.posterDetails}>
+//             <img src={posterDetails.poster} alt={posterDetails.title} />
+//             <div className={style.details}>
+//               <h2>{posterDetails.title}</h2>
+//               <p>{posterDetails.year}</p>
+//               <p>{posterDetails.genre}</p>
+//             </div>
+//           </div>
+//         {/* Add more details as needed */}
+//       </div>
+//       )};
+//     </div>
+//   );
+// }
 
 export const PageDetailsAnime = ({ addToWatchLater, watchLaterItems }) => {
 
@@ -255,6 +255,7 @@ export const PageDetailsAnime = ({ addToWatchLater, watchLaterItems }) => {
         <img src={posterDetails.poster} alt={posterDetails.title} />
         <div className={style.details}>
           <Link to="/home" className={style.link}>Home</Link>
+          <Link to="/anime" className={style.link}>Back</Link>
           <h2>{posterDetails.title}</h2>
           <div className={style.watch}>
             {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'anime')}>Watch now</Link> */}
@@ -301,6 +302,7 @@ export const PageDetailsMovies = ({ addToWatchLater, watchLaterItems }) => {
         <img src={posterDetails.poster} alt={posterDetails.title} />
         <div className={style.details}>
           <Link to="/home" className={style.link}>Home</Link>
+          <Link to="/movies" className={style.link}>Back</Link>
           <h2>{posterDetails.title}</h2>
           <div className={style.watch}>
             {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'movies')}>Watch now</Link> */}
@@ -346,6 +348,7 @@ export const PageDetailsWebSeries = ({ addToWatchLater, watchLaterItems }) => {
           <img src={posterDetails.poster} alt={posterDetails.title} />
           <div className={style.details}>
             <Link to="/home" className={style.link}>Home</Link>
+            <Link to="/webSeries" className={style.link}>Back</Link>
             <h2>{posterDetails.title}</h2>
             <div className={style.watch}>
               {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'webSeries')}>Watch now</Link> */}

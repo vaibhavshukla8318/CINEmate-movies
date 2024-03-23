@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import style from '../css/Slide.module.css';
 import Star from '../images/stars.png'
@@ -45,14 +43,6 @@ const Slide = () => {
     }
   };
 
-  // const handleSlide = (direction) => {
-  //   if (direction === 'left' && slidePosition > 0) {
-  //     setSlidePosition(slidePosition - 1);
-  //   } else if (direction === 'right' && slidePosition < movies.length - 3) {
-  //     setSlidePosition(slidePosition + 1);
-  //   }
-  // };
-
   const clickImage = (index) => {
     setSlideDetails(movies[index]);
   };
@@ -73,8 +63,44 @@ const Slide = () => {
 
   return (
     <>
-      <div className={style.slide} style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${slideDetails.poster_path})` }}>
+      {/* <div className={style.slide} style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${slideDetails.poster_path})` }}> */}
+      <div className={style.slide}>
 
+      <div className={style.slideWatch}>
+          <div className={style.watchNow}>
+            <div>
+              <>
+                <iframe className={style.iframe} src={`https://www.youtube.com/embed/${videos[slideDetails.id]?.[0]?.key}?${isPlaying ? 'autoplay=1&' : ''}mute=1&rel=0&loop=1`} frameBorder="0" title="video"></iframe>
+
+                {/* <p className={style.crossIcon} onClick={closeVideo}>X</p> */}
+              </>
+              {/* <p className={style.watch} onClick={togglePlay}>
+                {isPlaying ? 'Pause' : 'Play'}
+              </p>
+              {isPlaying && videos[slideDetails.id] && videos[slideDetails.id].length > 0 && (
+                
+                )} */}
+            </div>
+          </div>
+          <div className={style.miniSlideContainer}>
+            {movies.map((movie, index) => (
+              <div
+                key={index}
+                className={style.miniSlide}
+                onMouseEnter={() => handleImageHover(index)} 
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  className={`${style.miniSlideImage} ${index === slidePosition ? style.selected : ''} ${index === hoveredImageIndex ? style.hovered : ''}`} 
+                  alt={movie.title}
+                  onClick={() => clickImage(index)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className={style.slideDetails}>
         <h2>{slideDetails.title}</h2>
         <div className={style.seasonContainer}>
           <p className={style.year}>{slideDetails.release_date} &nbsp; &#x2022;</p>
@@ -88,41 +114,6 @@ const Slide = () => {
           </span>
           <span className={style.ratingCount}> Count: {slideDetails.vote_count}</span>
         </div>
-
-        <div className={style.slideWatch}>
-          <div className={style.watchNow}>
-            <div>
-              <p className={style.watch} onClick={togglePlay}>
-                {isPlaying ? 'Pause' : 'Play'}
-              </p>
-              {isPlaying && videos[slideDetails.id] && videos[slideDetails.id].length > 0 && (
-                  <>
-                  <iframe className={style.iframe} src={`https://www.youtube.com/embed/${videos[slideDetails.id][0].key}`} frameBorder="0" allowFullScreen title="video"></iframe>
-                  <p className={style.crossIcon} onClick={closeVideo}>X</p>
-                </>
-                )}
-            </div>
-          </div>
-          <div className={style.miniSlideContainer}>
-            {movies.map((movie, index) => (
-              <div
-                key={index}
-                className={style.miniSlide}
-                onMouseEnter={() => handleImageHover(index)} // Add mouse enter event handler
-              >
-                <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  className={`${style.miniSlideImage} ${index === slidePosition ? style.selected : ''} ${index === hoveredImageIndex ? style.hovered : ''}`} // Add conditional styling for hovered image
-                  alt={movie.title}
-                  onClick={() => clickImage(index)}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className={style.slideDetails}>
-
         </div>
       </div>
     </>
@@ -130,8 +121,6 @@ const Slide = () => {
 };
 
 export default Slide;
-
-
 
 
 

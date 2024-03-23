@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import style from '../css/LandingPage.module.css';
 import hoverSound1 from '../audio/audio2.mp3';
 import unBlurSound from '../audio/welcome.mp3';
-import {Link} from 'react-router-dom'
-import PopupImage from '../images/popupImage.png'
+import {Link} from 'react-router-dom';
+import PopupImage from '../images/popupImage.png';
+import Lock from '../images/lock.png';
+import Unlock from '../images/unlock.png';
 
 
 const LandingPage = () => {
@@ -27,29 +29,36 @@ const LandingPage = () => {
 
   const handleClick = () => {
     setTimeout(() => {
+      // document.querySelector(`.${style.click}`).style.display = 'none';
+      document.querySelector(`.${style.lock}`).style.display = 'none';
+      document.querySelector(`.${style.unlock}`).style.display = 'block';
+    }, 200);
+    setTimeout(() => {
       document.querySelector(`.${style.click}`).style.display = 'none';
-    }, 500);
+      // document.querySelector(`.${style.lock}`).style.display = 'none';
+      // document.querySelector(`.${style.unlock}`).style.display = 'block';
+    }, 1500);
 
     setTimeout(() => {
       document.querySelector(`.${style.hover1}`).style.width = '0';
       handleHover(audio1);
-    }, 1000);
+    }, 1500);
 
     setTimeout(() => {
       document.querySelector(`.${style.hover3}`).style.width = '0';
       handleHover(audio2);
 
-    }, 2000);
+    }, 2500);
     setTimeout(() => {
       document.querySelector(`.${style.hover2}`).style.width = '0';
       handleHover(audio3);
 
-    }, 3000);
+    }, 3500);
     setTimeout(() => {
       document.querySelector(`.${style.hover4}`).style.width = '0';
       handleHover(audio4);
 
-    }, 4000);
+    }, 4500);
    
     setTimeout(() => {
       document.querySelector(`.${style.parentContainer}`).style.filter = 'unset';
@@ -57,16 +66,16 @@ const LandingPage = () => {
       document.querySelector(`.${style.greeting}`).style.width = '500px';
 
       handleHover(audio5);
-    }, 4500);
+    }, 5500);
     setTimeout(()=>{
       document.querySelector(`.${style.displayNone}`).style.display = 'block';
-    }, 5000)
+    }, 5500)
     setTimeout(()=>{
       document.querySelector(`.${style.displayNone}`).style.opacity = '1';
-    }, 5500)
+    }, 6000)
     setTimeout(() => {
       document.querySelector(`.${style.hover}`).style.display = 'none';
-    }, 5000);
+    }, 6000);
   };
 
   return (
@@ -127,7 +136,10 @@ const LandingPage = () => {
         </div>
       </div>
       <div className={style.click}>
-        <div className={style.click1} onClick={handleClick}></div>
+        <div className={style.click1} onClick={handleClick}>
+           <img className={style.lock} src={Lock} />
+           <img className={style.unlock} src={Unlock} />
+        </div>
       </div>
     </div>
   );

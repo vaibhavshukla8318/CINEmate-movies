@@ -86,6 +86,12 @@
 .link{
     text-decoration: none;
     color: gray;
+    margin-left: 20px;
+   
+    border-radius: 20px;
+}
+.link:hover{
+  color: #25cfa4;
 }
 
 .detailsContainer h2{

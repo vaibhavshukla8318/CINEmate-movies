@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import MobileView from './components/MobileView';
 import { Loading } from './components/LoadingAndError';
+import  style from './App.module.css'
 
 const Root = () => {
   const [loading, setLoading] = useState(true);
@@ -16,11 +18,15 @@ const Root = () => {
 
   return (
     <React.StrictMode>
+      <div className={style.app}>
       {loading ? (
         <Loading />
       ) : (
-        <App />
-      )}
+         
+           <App/>
+           )}
+      </div>
+      <MobileView/>
     </React.StrictMode>
   );
 };

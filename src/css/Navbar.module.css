@@ -143,13 +143,13 @@
   .inputContainer ul li .title{
     width: 100%;
     height: 100%;
-    text-overflow:unset;
+    /* text-overflow:unset;
     white-space: unset;
-    overflow: unset;
+    overflow: unset; */
   }
+ 
   .inputContainer ul li .year,
-  .inputContainer ul li .type,
-  .inputContainer ul li img{
+  .inputContainer ul li .type{
     display: none;
   }
 }

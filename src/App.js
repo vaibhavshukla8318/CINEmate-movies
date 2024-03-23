@@ -5,15 +5,17 @@ import LandingPage from './components/LandingPage';
 import Home from './components/Home';
 import Footer from './components/Footer';
 // import {Login, Register, DeleteAccountPage} from './components/Login&Register';
-import {TeaserContainer ,AnimeContainer, MoviesContainer, WebSeriesContainer} from './components/AllFunContainer';
+import {AnimeContainer, MoviesContainer, WebSeriesContainer} from './components/AllFunContainer';
 import {PageDetailsAnimePlay, PageDetailsMoviesPlay, PageDetailsWebSeriesPlay} from './components/Play';
 import {PageDetailsTeaserWebSearch ,PageDetailsTeaserSearch ,PageDetailsTeaser ,PageDetailsAnime, PageDetailsMovies, PageDetailsWebSeries} from './components/DetailsPage';
-import { MovieTeaser, WebSeriesTeaser } from './components/Trailer';
+import { MovieTeaser } from './components/TrendingTrailer';
+import {WebSeriesTeaser} from './components/TrendingTrailerWebSeries'
 import Category from './components/CategoryContainer';
 import SeriesTeaserContainer from './components/CategorySeriesContainer';
 import  {UpcomingMovieTeaser, NowPlayingMovieTeaser, PopularMovieTeaser, TopRatedMovieTeaser}  from './components/CategoryMovies';
 import { AiringTodaySeriesTeaser, OnTheAirSeriesTeaser, PopularSeriesTeaser, TopRatedSeriesTeaser } from './components/CategorySeries';
 import WatchLaterPage from './components/MySpace';
+
 
 function App() {
 
@@ -63,7 +65,7 @@ function App() {
 
           
           {/* Media PLAYER  page(Play Page) */}
-          <Route path="/teaser" element={<TeaserContainer/>} />
+          {/* <Route path="/teaser" element={<TeaserContainer/>} /> */}
           <Route path="/playAnime/:itemId" element={<PageDetailsAnimePlay/>} />
           <Route path="/playMovies/:itemId" element={<PageDetailsMoviesPlay/>} />
           <Route path="/playWebSeries/:itemId" element={<PageDetailsWebSeriesPlay/>} />
@@ -71,7 +73,7 @@ function App() {
           {/* Content Details page with Poster(Single Data)(Details Page)*/}
           <Route path="/searchWebTeaser/:itemId" element={<PageDetailsTeaserWebSearch/>} />
           <Route path="/searchTeaser/:itemId" element={<PageDetailsTeaserSearch/>} />
-          <Route path="/detailsTeaser/:itemId" element={<PageDetailsTeaser />} />
+          {/* <Route path="/detailsTeaser/:itemId" element={<PageDetailsTeaser />} /> */}
           <Route path="/detailsAnime/:itemId" element={<PageDetailsAnime addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
           <Route path="/detailsMovies/:itemId" element={<PageDetailsMovies addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
           <Route path="/detailsWebSeries/:itemId" element={<PageDetailsWebSeries addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
@@ -81,7 +83,7 @@ function App() {
           <Route path="/movies" element={<MoviesContainer addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>}/>
           <Route path="/webSeries" element={<WebSeriesContainer addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems} />} />
 
-          {/* Trailer Page */}
+          {/* Trailer Trending Page */}
           <Route path="/moviesTrailerPage" element={<MovieTeaser/>} />
           <Route path="/webSeriesTrailerPage" element={<WebSeriesTeaser/>} />
 
@@ -110,8 +112,6 @@ function App() {
 
         </Routes>
       </BrowserRouter>
-
-      {/* <Footer/> */}
     </>
   );
 }
