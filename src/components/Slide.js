@@ -70,7 +70,7 @@ const Slide = () => {
           <div className={style.watchNow}>
             <div>
               <>
-                <iframe className={style.iframe} src={`https://www.youtube.com/embed/${videos[slideDetails.id]?.[0]?.key}?${isPlaying ? 'autoplay=1&' : ''}mute=1&rel=0&loop=1`} frameBorder="0" title="video"></iframe>
+                <iframe className={style.iframe} src={`https://www.youtube.com/embed/${videos[slideDetails.id]?.[0]?.key}?${isPlaying ? 'autoplay=1&' : ''}mute=1&rel=0&loop=1`} frameBorder="0" allowFullScreen title="video"></iframe>
 
                 {/* <p className={style.crossIcon} onClick={closeVideo}>X</p> */}
               </>
