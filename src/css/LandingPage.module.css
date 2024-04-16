@@ -1,0 +1,218 @@
+/* Click Effect */
+
+.wrapper{
+  background-color: #242428;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  right: 0;
+  z-index: 8;
+}
+.parentContainer{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  filter: blur(3px);
+  transition: all 0.5s ease-in-out;
+}
+.contentContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.greetingContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  transform: translatey(-100%);
+}
+.greeting{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 250px;
+  width: 0px;
+  background-color: gray;
+  border-radius: 10px;
+  transition: all 1s ease-in-out;
+}
+.displayNone{
+  display: none;
+  background-color: gray;
+  height: 250px;
+  width: 500px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: all 2s ease-in-out;
+  border-radius: 10px;
+
+}
+.displayNone span{
+  position: absolute;
+  right: 0;
+  margin-right: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 2rem;
+}
+.displayNone img{
+  height: 250px;
+  width: 500px;
+  border-radius: 10px;
+}
+.hover{
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transform: translatey(-100%);
+  background-color: transparent;
+}
+.click{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  transform: translatey(-100%);
+  background-color: transparent;
+}
+.click1{
+  display: flex;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.click1 img{
+  margin-top: -4px;
+  height: 40px;
+  width: 40px;
+}
+.lock{
+  display: block;
+}
+.unlock{
+  display: none;
+}
+
+.hover1Container{
+height: 100%;
+width: 100%;
+background-color: transparent;
+opacity: 0.3;
+}
+.hover1{
+height: 50%;
+width: 50%;
+background-color: yellow;
+transition: all 1s ease-in-out;
+}
+.hover2{
+height: 50%;
+width: 50%;
+background-color: blue;
+transition: all 1s ease-in-out;
+
+}
+.hover3Container{
+position: absolute;
+height: 100%;
+width: 100%;
+background-color: transparent;
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+opacity: 0.3;
+}
+.hover3{
+height: 50%;
+width: 50%;
+background-color: brown;
+transition: all 1s ease-in-out;
+
+}
+.hover4{
+height: 50%;
+width: 50%;
+background-color: black;
+transition: all 1s ease-in-out;
+}
+
+
+/* container content */
+/* details.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  height: 70vh;
+  margin: 0 auto;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar{
+  width: 5px;
+  background-color: #ccc;
+  border-radius: 10px;
+}
+.container::-webkit-scrollbar-thumb{
+  background-color: red;
+  border-radius: 10px;
+}
+.container h1 {
+  color: #333; /* Dark grey */
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.container .paragraph {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #555; /* Slightly darker grey */
+}
+
+.linkContainer{
+  width: 50vw;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* right: 0; */
+}
+
+/* Hover effect on links */
+.linkContainer:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+
+
+/* .link{
+  text-decoration: none;
+  color: #fff;
+} */
+
+/* If you want links to stand out more */
+.container .link {
+  color: red; /* Blue */
+  text-decoration: none;
+}
+
+@media(max-width:768px){
+  .greetingContainer{
+    display: none;
+  }
+}   

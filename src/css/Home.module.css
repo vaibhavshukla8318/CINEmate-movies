@@ -1,0 +1,203 @@
+.home{
+    width: 98.7vw;
+    height: auto;
+    padding-top: 11vh;
+    background: #0F1014;
+}
+
+/* sidebar */ 
+.sidebar{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: fixed;
+    z-index:3;
+    transition: all 0.5s ease-in-out;
+    background-color: transparent;
+}
+.sidebar::-webkit-scrollbar{
+    display: none;
+}
+.sidebar:hover{
+    min-width: 15vw;
+    background-color: #0F1014;
+    opacity: 0.7;
+}
+
+.sidebar:hover .displayBlock{
+    display: none; 
+}
+.sidebar:hover .displayNone{
+    display: flex;
+    flex-direction: column;
+}
+.sidebar .displayBlock{
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    padding-left: 10px;
+    margin: 11px 0;
+    border-radius: 15px;
+}
+.sidebar .displayBlock img{
+    margin: 15px 0;
+}
+.sidebar .displayNone{
+    display: none;
+    padding-top: 80px;
+}
+.mobileSearchContainer{
+    display: none;
+}
+.sidebar .displayNone div{
+    height: 35px;
+    width: 11.2vw;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    cursor: pointer;
+    margin: 11px 0;
+    padding-left: 10px;
+    border-radius: 15px;
+}
+.sidebar .displayNone div:hover{
+    background-color:red;
+}
+
+.sidebar .displayNone div span{
+   font-size: 1.1rem;
+   font-weight: 600;
+   color: beige;
+}
+
+.sidebar .displayBlock img,
+.sidebar .displayNone img{
+    height: 30px;
+    width: 30px;
+}
+.link{
+    text-decoration: none;
+}
+
+
+/* content */
+.content{
+    width: 100%;
+    background-color: #0F1014;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    overflow: hidden;
+    z-index: 1;
+}
+.content::-webkit-scrollbar{
+    display: none;
+}
+
+  
+  @media(max-width:1140px) {
+     .sidebar span{
+        display: none;
+     }
+    .sidebar .displayNone{
+        margin-left: 20px;
+    }
+     .content{
+        padding-left: 1vw;
+     }
+  }
+  
+  @media(max-width:768px){
+    .home{
+        width: 100%;
+        background-color: green;
+        /* overflow-x: hidden/; */
+        /* height: a; */
+        /* width:100vw; */
+        /* position: fixed; */
+        /* display: flex; */
+        /* padding-top: 9vh; */
+        padding-top: 0;
+        position: absolute;
+        overflow: hidden;
+    }
+    .desktopNavbar{
+        display: none;
+    }
+    .sidebar{
+        background-color: rgba(45, 43, 43, 1);
+        height: unset;
+        position: fixed;
+        /* transform: translateY(100vh); */
+        /* margin-top: -2.85vh; */
+        border-radius: unset;
+        width: 100%;
+        overflow: hidden;
+    }
+    .sidebar:hover{
+        width: 100%;
+        background-color: unset;
+        opacity: 1;
+    }
+    .sidebar .displayBlock,
+    .teaserLink,
+    .moviesLink,
+    .seriesLink,
+    .animeLink{
+        display: none!important;
+    }
+    .sidebar .displayNone{
+        display: flex;
+        padding: unset;
+        gap: 15px;
+        /* padding-top: 10px; */
+        overflow-x: scroll;
+    }
+    .sidebar .displayBlock img,
+    .sidebar .displayNone img{
+    height: 37px;
+    width: 37px;
+}
+    .mobileSearchContainer{
+        display: flex!important;
+    }
+    .mobileSearchContainer .mobileSearch{
+       margin-top: 11px;
+       height: 40px;
+       width: 40px;
+       font-weight: 900;
+    }
+    .mobileSearchContainer .mobileNavbar{
+        display: none;
+        position: fixed!important;
+        /* transform: translateY(100%); */
+        /* margin-top: -60px; */
+    }
+   .mobileSearchContainer:hover>.mobileNavbar{
+        display: block!important;
+    }
+    .sidebar:hover .displayNone{
+        display: flex;
+        flex-direction: unset;
+    }
+    .sidebar .displayNone div{
+        /* height: unset;
+        width: unset; */
+        padding-left: 0;
+        /* display: unset; */
+        margin:13px 0;
+    }
+    .sidebar .displayNone div:hover{
+        background-color:unset;
+    }
+    .link{
+        margin-left: 15px;
+    }
+
+    .content{
+        /* height: 100%; */
+        width: 100%;
+        border-radius: unset;
+    }
+  }
