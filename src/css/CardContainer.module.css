@@ -102,11 +102,11 @@ height: 46.5vh;
   object-fit: cover;
 }
 
-.poster:hover{
+/* .poster:hover{
   transform:translate(-15px, 7px) scale(1.15);
   width: 280px;
   
-}
+} */
 
 
 /* Play Button */

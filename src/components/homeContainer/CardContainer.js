@@ -169,8 +169,6 @@ const YouTubePlayList = ({ title, linkPage, linkPlay, movies }) => {
 
                   </div>
               </Link>
-            {/* {hoveredImageIndex === movie.id && (
-            )} */}
             </div>
           </>
         ))}
@@ -252,8 +250,7 @@ const YouTubePlayMoviesList = ({ title, linkPage, linkPlay, movies }) => {
             onMouseEnter={() => handleImageHover(movie.id)}
             onMouseLeave={() => handleImageHover(null)}
             >
-            {/* <img src={movie.snippet.thumbnails.default.url} className={style.poster} alt="poster" /> */}
-            {/* <img src={movie.snippet.thumbnails?.default?.url} className={`${style.mrBeastPoster}`} alt="poster" /> */}
+           
             <div className={style.poster} ></div>
             <img className={style.playButton} src={Play} alt="playButton" />
               <Link to={`/videoMovies/${movie.snippet.resourceId.videoId}`}>
