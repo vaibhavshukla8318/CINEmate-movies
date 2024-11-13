@@ -255,31 +255,6 @@ export const PageDetailsTeaserWebSearch = () => {
   );
 };
 
-// export const PageDetailsTeaser = () => {
-
-//   const { itemId } = useParams();
-//   const posterDetails = TeaserData.find(item => item.id === parseInt(itemId));
-
-//   return (
-//     <div className={style.selectedItemContainer}>
-//       <Navbar />
-//       {posterDetails && (
-//         <div className={style.selectedItem}>
-//           <iframe src={posterDetails.video} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
-//           <div className={style.posterDetails}>
-//             <img src={posterDetails.poster} alt={posterDetails.title} />
-//             <div className={style.details}>
-//               <h2>{posterDetails.title}</h2>
-//               <p>{posterDetails.year}</p>
-//               <p>{posterDetails.genre}</p>
-//             </div>
-//           </div>
-//         {/* Add more details as needed */}
-//       </div>
-//       )};
-//     </div>
-//   );
-// }
 
 
 
@@ -436,66 +411,3 @@ export const PageDetailsWebSeries = ({ addToWatchLater, watchLaterItems }) => {
     </>
   );
 }
-
-
-// export const PageDetailsYouTube = () => {
-//   const [video, setVideos] = useState(null);
-//   const { videoID } = useParams();
-
-// const fetchYouTubeVideo = async () => {
-//   try {
-//     const response = await axios.get(
-//       `https://www.googleapis.com/youtube/v3/videos`, {
-//         params: {
-//           part: 'snippet',
-//           id: videoID,
-//           key: 'AIzaSyDsKb2w7pPipyiONQA3SgwaZ1siwwhfTHk', // Replace with your YouTube Data API key
-//         }
-//       }
-//     );
-//     setVideos(response.data.items[0]);
-//   } catch (error) {
-//     console.error('Error fetching YouTube video:', error);
-//   }
-// };
-
-// useEffect(() => {
-//   if (videoID) {
-//     fetchYouTubeVideo();
-//   }
-// }, [videoID]);
-
-
-
-//   return (
-//     <>
-//       {/* Include your Navbar here */}
-//       <Navbar/>
-//       {video && (
-//         <>
-//           <div className={style.blur} style={{ background: `url(${video.snippet.thumbnails.default.url})` }}>
-
-//           </div>
-//           <div className={style.detailsContainer}>
-//             <div className={style.details}>
-//               <Link to="/home" className={style.link}>Home</Link>
-//               <Link to="/anime" className={style.link}>Back</Link>
-//               <h2>{video.snippet.title}</h2>
-//               <div className={style.watch}>
-//                 {/* <Link to={`/videos/${video.snippet.resourceId.videoId}`} className={style.watchNow}>Watch now</Link> */}
-//                 {/* <div className={style.watchLater}>
-//                   {isItemInWatchLater(video) ? (
-//                     <p className={style.watchLater}>Added</p>
-//                   ) : (
-//                     <p onClick={() => addToWatchLater(video)}>Watch Later</p>
-//                   )}
-//                 </div> */}
-//               </div>
-//               <p className={style.plot}>{video.snippet.description}</p>
-//             </div>
-//           </div>
-//         </>
-//       )}
-//     </>
-//   );
-// };

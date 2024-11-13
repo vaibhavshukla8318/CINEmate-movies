@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React, {useState, useEffect} from 'react';
-import {TeaserData, AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Data.js';
+import {AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Data.js';
 import Play from '../../images/play.png';
 import Add from '../../images/add.png'
 import Added from '../../images/correct.png'
@@ -7,44 +9,6 @@ import style from '../../css/AllFunContainer.module.css'
 import Sidebar from '../homeContainer/Sidebar';
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
-
-// export const TeaserContainer = () => { 
- 
-//     return (
-//       <>
-//         <Sidebar />
-//         <div className={style.cardContainerTeaser}>
-//           <h1>Trending</h1>
-//           <div className={style.linkContainer}>
-//             <Link to='/moviesTrailerPage' className={style.link}>Movie</Link>
-//             <Link to='/webSeriesTrailerPage' className={style.link}>TV</Link>
-//           </div>
-//             {/* <div className={style.imageContainer}>
-//                {TeaserData.slice().reverse().map((image) => (
-//                  <Link to={`/detailsTeaser/${image.id}`} className={style.posterContainer} key={image.id}>
-//                   <img
-//                     src={image.poster}
-//                     className={style.poster}
-//                     alt="img"
-//                   />
-//                   <img className={style.playButton} src={Play} alt="Play"/>
-//                   <div className={style.details}>
-//                     <h3>{image.title}</h3>
-//                     <p>{image.year}</p>
-//                   </div>
-//                 </Link>
-//               ))}
-            
-//             </div> */}
-//         </div>
-//             {/* <MovieTeaser/>    */}
-//       </>  
-//     );
-//   }
-
-
-
 
 
 export const AnimeContainer = ({addToWatchLater, watchLaterItems}) => { 
@@ -212,9 +176,7 @@ const isItemInWatchLater = (item) => {
     }, []); 
   
     
-    // const isItemInWatchLater = (item) => {
-    //   return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-    // };
+    
   
       return (
         <>
@@ -233,17 +195,9 @@ const isItemInWatchLater = (item) => {
                       <iframe className={`${style.youTubeIframe}`} src={`https://www.youtube.com/embed/${image.snippet.resourceId.videoId}`} frameBorder="0" allow='autoplay'
                    allowFullScreen></iframe>
                     
-                        {/* <img className={style.playButton} src={Play} alt="Play"/> */}
-                        {/* <div className={style.details}>
-                          <h3>{image.snippet.title}</h3>       
-                          <p>{image.year}</p>
-                        </div> */}
+                       
                       </Link>
-                      {/* {isItemInWatchLater(image) ? (
-                      <img src={Added} className={style.addedWatchLater} alt='added'/>
-                      ) : (
-                        <img src={Add} className={style.addWatchLater} onClick={() => addToWatchLater(image)} alt='add' />
-                      )} */}
+                    
                     </div>
                    
                   </>
@@ -284,9 +238,7 @@ const isItemInWatchLater = (item) => {
     }, []); 
   
     
-    // const isItemInWatchLater = (item) => {
-    //   return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-    // };
+  
   
       return (
         <>
@@ -300,22 +252,14 @@ const isItemInWatchLater = (item) => {
                   <>
                     <div className={style.posterContainer} key={image.id}>
                       <Link to={`/video/${image.snippet.resourceId.videoId}`} >
-                      {/* <img src={image.snippet.thumbnails?.default?.url} className={style.poster} alt={image.snippet.title} /> */}
+                   
                       <div></div>
                       <iframe className={`${style.youTubeIframe}`} src={`https://www.youtube.com/embed/${image.snippet.resourceId.videoId}`} frameBorder="0" allow='autoplay'
                    allowFullScreen></iframe>
                     
-                        {/* <img className={style.playButton} src={Play} alt="Play"/> */}
-                        {/* <div className={style.details}>
-                          <h3>{image.snippet.title}</h3>       
-                          <p>{image.year}</p>
-                        </div> */}
+                       
                       </Link>
-                      {/* {isItemInWatchLater(image) ? (
-                      <img src={Added} className={style.addedWatchLater} alt='added'/>
-                      ) : (
-                        <img src={Add} className={style.addWatchLater} onClick={() => addToWatchLater(image)} alt='add' />
-                      )} */}
+                   
                     </div>
                    
                   </>

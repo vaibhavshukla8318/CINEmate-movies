@@ -1,8 +1,10 @@
+/* eslint-disable no-undef */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import style from '../../css/Navbar.module.css';
 import errorImage from '../../images/error.png';
-import { TeaserData, AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Data';
+import { AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Data';
 
 const SearchComponent = () => {
   const [trailer, setTrailer] = useState([]);
@@ -11,9 +13,11 @@ const SearchComponent = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const searchRef = useRef(null);
 
+
+  const API = "fe3c2c41cac485e991fabd53535d760b"
   const fetchMovieTrailer = async () => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=fe3c2c41cac485e991fabd53535d760b&query=${searchTerm}`);
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API}&query=${searchTerm}`);
       const data = await response.json();
       setTrailer(data.results);
     } catch (error) {
@@ -23,7 +27,7 @@ const SearchComponent = () => {
 
   const fetchMovieTrailerWeb = async () => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=fe3c2c41cac485e991fabd53535d760b&query=${searchTerm}`);
+      const response = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${API}&query=${searchTerm}`);
       const data = await response.json();
       console.log(data);
       setWebTrailer(data.results);
@@ -75,16 +79,6 @@ const SearchComponent = () => {
     
       {searchTerm && (
         <ul>
-          {/* {TeaserData.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
-            <Link key={item.id} to={`/detailsTeaser/${item.id}`} className={style.link}>
-              <li key={item.id} onClick={() => handleItemClick(item)}>
-                <img src={item.poster} alt={item.title} />
-                <span className={style.title}>{item.title}</span>
-                <span className={style.year}>{item.year}</span>
-                <span className={style.type}>Teaser</span>
-              </li>
-            </Link>
-          ))} */}
           
           {AnimeData.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
             <Link key={item.id} to={`/detailsAnime/${item.id}`} className={style.link}>
@@ -131,6 +125,7 @@ const SearchComponent = () => {
               </li>
             </Link>
           ))}
+        
           {/* using API */}
           {webTrailer.map(item => (
             <Link key={item.id} to={`/searchWebTeaser/${item.id}`} className={style.link}>
@@ -151,5 +146,6 @@ const SearchComponent = () => {
     </div>
   );
 };
+
 
 export default SearchComponent;

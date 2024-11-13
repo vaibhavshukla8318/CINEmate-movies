@@ -10,9 +10,13 @@ const Slide = () => {
   const [hoveredImageIndex, setHoveredImageIndex] = useState(null); 
   const [videos, setVideos] = useState({});
 
+
+  const API = "fe3c2c41cac485e991fabd53535d760b"
+  
+
   const fetchData = async () => {
     try {
-      const response = await fetch("https://api.themoviedb.org/3/movie/upcoming?api_key=fe3c2c41cac485e991fabd53535d760b");
+      const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API}`);
       const data = await response.json();
       setMovies(data.results);
       setSlideDetails(data.results[0]);
@@ -30,7 +34,7 @@ const Slide = () => {
 
   const fetchVideosForMovie = async (movieId) => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=fe3c2c41cac485e991fabd53535d760b&language=en-US`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API}&language=en-US`);
       const data = await response.json();
       if (data.results.length > 0) {
         setVideos(prevVideos => ({
@@ -63,7 +67,7 @@ const Slide = () => {
 
   return (
     <>
-      {/* <div className={style.slide} style={{ backgroundImage: `url(https://image.tmdb.org/t/p/w500/${slideDetails.poster_path})` }}> */}
+    
       <div className={style.slide}>
 
       <div className={style.slideWatch}>
@@ -72,14 +76,8 @@ const Slide = () => {
               <>
                 <iframe className={style.iframe} src={`https://www.youtube.com/embed/${videos[slideDetails.id]?.[0]?.key}?${isPlaying ? 'autoplay=1&' : ''}mute=1&rel=0&loop=1`} frameBorder="0" allowFullScreen title="video"></iframe>
 
-                {/* <p className={style.crossIcon} onClick={closeVideo}>X</p> */}
               </>
-              {/* <p className={style.watch} onClick={togglePlay}>
-                {isPlaying ? 'Pause' : 'Play'}
-              </p>
-              {isPlaying && videos[slideDetails.id] && videos[slideDetails.id].length > 0 && (
-                
-                )} */}
+             
             </div>
           </div>
           <div className={style.miniSlideContainer}>
