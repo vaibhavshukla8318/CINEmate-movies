@@ -147,7 +147,8 @@ const isItemInWatchLater = (item) => {
 
 
 
-  export const YouTubeVideoContainer = () => { 
+
+  const YouTubeContainer = ({title, video, playlistID}) =>{
 
     const [videos, setVideos] = useState([]);
   
@@ -158,8 +159,7 @@ const isItemInWatchLater = (item) => {
           `https://www.googleapis.com/youtube/v3/playlistItems`, {
             params: {
               part: 'snippet',
-              playlistId: 'PLv1XPZCxNOvX8hG0tEjAEERdo5kt9Q8E_',
-              // playlistId: 'PLv1XPZCxNOvUzuaGJt1tKLtXUbmXC1vhY',
+              playlistId: playlistID,
               key: 'AIzaSyDsKb2w7pPipyiONQA3SgwaZ1siwwhfTHk', // Replace with your YouTube Data API key
               maxResults: 10 // Adjust as needed
             }
@@ -175,98 +175,53 @@ const isItemInWatchLater = (item) => {
       fetchYouTubeVideos();
     }, []); 
   
-    
-    
+  
+    return (
+      <>
+        <Sidebar />
+        <div className={style.cardContainer}>
+          <h1>{title}</h1>
+          
+            <div className={style.imageContainer}>
+   
+               {videos.map((image) => (
+                <>
+                  <div className={style.posterContainer} key={image.id}>
+                    <Link to={`${video}/${image.snippet.resourceId.videoId}`} >
+                 
+                    <div></div>
+                    <iframe className={`${style.youTubeIframe}`} src={`https://www.youtube.com/embed/${image.snippet.resourceId.videoId}`} frameBorder="0" allow='autoplay'
+                 allowFullScreen></iframe>
+                  
+                     
+                    </Link>
+                 
+                  </div>
+                 
+                </>
+              ))}
+            
+          </div>
+        </div>
+      </>  
+    );
+  }
+  
+  
+  export const YouTubeVideoContainer = () => {
   
       return (
         <>
-          <Sidebar />
-          <div className={style.cardContainer}>
-            <h1>You Tube</h1>
-            
-              <div className={style.imageContainer}>
-     
-                 {videos.map((image) => (
-                  <>
-                    <div className={style.posterContainer} key={image.id}>
-                      <Link to={`/video/${image.snippet.resourceId.videoId}`} >
-                      {/* <img src={image.snippet.thumbnails.default.url} className={style.poster} alt="poster" /> */}
-                      <div></div>
-                      <iframe className={`${style.youTubeIframe}`} src={`https://www.youtube.com/embed/${image.snippet.resourceId.videoId}`} frameBorder="0" allow='autoplay'
-                   allowFullScreen></iframe>
-                    
-                       
-                      </Link>
-                    
-                    </div>
-                   
-                  </>
-                ))}
-              
-            </div>
-          </div>
+          <YouTubeContainer title="You Tube" video="/video" playlistID = "PLv1XPZCxNOvX8hG0tEjAEERdo5kt9Q8E_"/>
         </>  
       );
     }
-
-  export const YouTubeMoviesContainer = () => { 
-
-    const [videos, setVideos] = useState([]);
   
-    const fetchYouTubeVideos = async () => {
-      try {
-        // Make a request to the YouTube Data API to fetch videos
-        const response = await axios.get(
-          `https://www.googleapis.com/youtube/v3/playlistItems`, {
-            params: {
-              part: 'snippet',
-              playlistId: 'PLv1XPZCxNOvUzuaGJt1tKLtXUbmXC1vhY',
-              // playlistId: 'PLv1XPZCxNOvUzuaGJt1tKLtXUbmXC1vhY',
-              key: 'AIzaSyDsKb2w7pPipyiONQA3SgwaZ1siwwhfTHk', // Replace with your YouTube Data API key
-              maxResults: 10 // Adjust as needed
-            }
-          }
-        );
-        setVideos(response.data.items);
-      } catch (error) {
-        console.error('Error fetching YouTube videos:', error);
-      }
-    };
-  
-    useEffect(() => {
-      fetchYouTubeVideos();
-    }, []); 
-  
-    
-  
+  export const YouTubeMoviesContainer = () => {
   
       return (
         <>
-          <Sidebar />
-          <div className={style.cardContainer}>
-            <h1>Movies</h1>
-            
-              <div className={style.imageContainer}>
-     
-                 {videos.map((image) => (
-                  <>
-                    <div className={style.posterContainer} key={image.id}>
-                      <Link to={`/video/${image.snippet.resourceId.videoId}`} >
-                   
-                      <div></div>
-                      <iframe className={`${style.youTubeIframe}`} src={`https://www.youtube.com/embed/${image.snippet.resourceId.videoId}`} frameBorder="0" allow='autoplay'
-                   allowFullScreen></iframe>
-                    
-                       
-                      </Link>
-                   
-                    </div>
-                   
-                  </>
-                ))}
-              
-            </div>
-          </div>
+          <YouTubeContainer title="Movies" video="/video" playlistID = "PLv1XPZCxNOvUzuaGJt1tKLtXUbmXC1vhY"/>
         </>  
       );
     }
