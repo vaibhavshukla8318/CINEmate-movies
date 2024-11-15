@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.module.css';
 import Home from './components/Home';
 import LandingPage from './components/LandingPage';
-import { CardPagesContainerRouters, CategoryPagesRouters, DetailsPagesRouters, PlayPagesRouters, WatchLaterPagesRouters } from './components/routers/Routers';
+import { CardPagesContainerRouters, CategoryPagesRouters, DetailsPagesRouters, PlayPagesRouters } from './components/routers/Routers';
 
 
 
@@ -19,7 +19,6 @@ function App() {
         <CategoryPagesRouters />
         <DetailsPagesRouters />
         <PlayPagesRouters/>
-        <WatchLaterPagesRouters/>
       </div>
    </BrowserRouter>
   );

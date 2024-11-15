@@ -7,12 +7,8 @@ import Category from '../pages/categoryContainer/CategoryContainer';
 import SeriesTeaserContainer from '../pages/categoryContainer/CategorySeriesContainer';
 import  {UpcomingMovieTeaser, NowPlayingMovieTeaser, PopularMovieTeaser, TopRatedMovieTeaser}  from '../pages/categoryContainer/CategoryMovies';
 import { AiringTodaySeriesTeaser, OnTheAirSeriesTeaser, PopularSeriesTeaser, TopRatedSeriesTeaser } from '../pages/categoryContainer/CategorySeries';
-import {PageDetailsTeaserWebSearch ,PageDetailsTeaserSearch, PageDetailsTeaser ,PageDetailsAnime, PageDetailsMovies, PageDetailsWebSeries, PageDetailsYouTube} from '../pages/DetailsPage';
+import {PageDetailsTeaserWebSearch ,PageDetailsTeaserSearch} from '../pages/DetailsPage';
 import {PageDetailsAnimePlay, PageDetailsMoviesPlay, PageDetailsWebSeriesPlay, PlayYouTube, PlayYouTubeMovies } from '../pages/Play';
-import WatchLaterPage from '../pages/MySpace';
-
-
-
 
 export const CardPagesContainerRouters = () => {
 
@@ -54,37 +50,12 @@ export const CardPagesContainerRouters = () => {
 
 export const DetailsPagesRouters = () => {
 
-  const [watchLaterItems, setWatchLaterItems] = useState([]);
-
-  useEffect(() => {
-    const storedWatchLaterItems = JSON.parse(localStorage.getItem('watchLater'));
-    if (storedWatchLaterItems) {
-      setWatchLaterItems(storedWatchLaterItems);
-    }
-  }, []);
-
-  const addToWatchLater = (item) => {
-    // Check if the item is already in the watchLaterItems array
-    const isItemInList = watchLaterItems.some((existingItem) => existingItem.title === item.title);
-  
-    if (!isItemInList) {
-      // Item does not exist in the list, add it
-      const updatedItems = [...watchLaterItems, item];
-      setWatchLaterItems(updatedItems);
-      localStorage.setItem('watchLater', JSON.stringify(updatedItems));
-    }
-  };
-
   return(
     <Routes>
        {/* Content Details page with Poster(Single Data)(Details Page)*/}
+
        <Route path="/searchWebTeaser/:itemId" element={<PageDetailsTeaserWebSearch/>} />
-          <Route path="/searchTeaser/:itemId" element={<PageDetailsTeaserSearch/>} />
-          {/* <Route path="/detailsTeaser/:itemId" element={<PageDetailsTeaser />} /> */}
-          {/* <Route path="/detailsAnime/:itemId" element={<PageDetailsAnime addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
-          <Route path="/detailsMovies/:itemId" element={<PageDetailsMovies addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
-          <Route path="/detailsWebSeries/:itemId" element={<PageDetailsWebSeries addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} /> */}
-          {/* <Route path="/video/:videoID" element={<PageDetailsYouTube/>} /> */}
+       <Route path="/searchTeaser/:itemId" element={<PageDetailsTeaserSearch/>} />
     </Routes>
   )
 }
@@ -111,31 +82,6 @@ export const CategoryPagesRouters = () =>{
   )
 }
 
-export const WatchLaterPagesRouters = () =>{
-
-  const [watchLaterItems, setWatchLaterItems] = useState([]);
-
-  useEffect(() => {
-    const storedWatchLaterItems = JSON.parse(localStorage.getItem('watchLater'));
-    if (storedWatchLaterItems) {
-      setWatchLaterItems(storedWatchLaterItems);
-    }
-  }, []);
-
-  const removeFromWatchLater = (index) => {
-    const updatedItems = [...watchLaterItems];
-    updatedItems.splice(index, 1);
-    setWatchLaterItems(updatedItems);
-    localStorage.setItem('watchLater', JSON.stringify(updatedItems));
-  };
-
-
-  return(
-    <Routes>
-      <Route path="/watch-later" element={<WatchLaterPage watchLaterItems={watchLaterItems} removeFromWatchLater={removeFromWatchLater} />}/>
-    </Routes>
-  )
-}
 
 export const PlayPagesRouters = () =>{
   return(

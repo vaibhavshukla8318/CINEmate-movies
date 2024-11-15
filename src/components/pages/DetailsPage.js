@@ -129,9 +129,6 @@ export const PageDetailsTeaserSearch = () => {
 };
 
 
-
-
-
 export const PageDetailsTeaserWebSearch = () => {
   const [trailerDetails, setTrailerDetails] = useState(null);
   const [videos, setVideos] = useState({});

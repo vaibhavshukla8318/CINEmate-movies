@@ -3,7 +3,6 @@ import Home from '../../images/home.png'
 import Movie from '../../images/movie.png'
 import TV from '../../images/tv.png'
 import Catogory from '../../images/catogory.png'
-import MySpace from '../../images/myspace.png'
 import Search from '../../images/search.png'
 import style from '../../css/Home.module.css'
 import { Link } from 'react-router-dom';
@@ -66,16 +65,9 @@ const Sidebar = () => {
                 <span>Catogory</span>
               </div>
             </Link>
-            <Link to="/watch-later" className={style.link}>
-              <div>
-              <img src={MySpace} alt="mySpace"/>
-              <span>My Space</span>
-              </div>
-            </Link>
           </div>
         </div>
       </div>
-      {/* <div className={style.hoverEffect}></div> */}
     </>
   )
 }

@@ -106,17 +106,10 @@ const PageDetails = ({playListID}) => {
   );
 };
 
-export const PageDetailsAnimePlay = () => (
-  <>
-  <PageDetails playListID='PL5BT3-cWoWWIq7KFtztkohAfMuomFcuTH'/>
-  </>
-)
-
-
-export const PageDetailsMoviesPlay = () => {
+const PageDetailsDataContainer = ({ Data }) => {
 
   const { itemId } = useParams();
-  const posterDetails = MoviesDataTrailer.find(item => item.id === parseInt(itemId));
+  const posterDetails = Data.find(item => item.id === parseInt(itemId));
 
 
    return (
@@ -147,40 +140,8 @@ export const PageDetailsMoviesPlay = () => {
   )
 
 }
-export const PageDetailsWebSeriesPlay = () => {
 
-
-  const { itemId } = useParams();
-  const posterDetails = WebSeriesData.find(item => item.id === parseInt(itemId));
-
-   return (
-    <div className={style.selectedItemContainer}>
-      {/* <Navbar /> */}
-      {posterDetails && (
-        <div className={`${style.selectedItem} ${style.seriesSelectedItem}`}>
-          <iframe src={posterDetails.video} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
-          <div className={style.posterDetails}>
-            <Link to="/home" className={style.link}>Home</Link>
-           
-            <div className={style.linkContainer}>
-           
-              <div className={style.details}>
-                <h2>{posterDetails.title}</h2>
-            
-                <p>{posterDetails.year}</p>
-           
-              </div>
-            </div>
-          </div>
-        {/* Add more details as needed */}
-      </div>
-      )}
-    </div>
-  )
-
-}
-
-export const PlayYouTube = () => {
+export const YouTubeVideo = () => {
   const [video, setVideo] = useState(null);
   const { videoID } = useParams();
 
@@ -233,53 +194,46 @@ export const PlayYouTube = () => {
 };
 
 
-export const PlayYouTubeMovies = () => {
-  const [video, setVideo] = useState(null);
-  const { videoID } = useParams();
+export const PageDetailsAnimePlay = () => (
+  <>
+  <PageDetails playListID='PL5BT3-cWoWWIq7KFtztkohAfMuomFcuTH'/>
+  </>
+)
 
-  const fetchYouTubeVideo = async () => {
-    try {
-      const response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/videos`, {
-          params: {
-            part: 'snippet',
-            id: videoID,
-            key: 'AIzaSyDsKb2w7pPipyiONQA3SgwaZ1siwwhfTHk',
-          }
-        }
-      );
-      setVideo(response.data.items[0]);
-    } catch (error) {
-      console.error('Error fetching YouTube video:', error);
-    }
-  };
-
-  useEffect(() => {
-    if (videoID) {
-      fetchYouTubeVideo();
-    }
-  }, [videoID]);
+export const PageDetailsMoviesPlay = () => {
 
   return (
-    <div className={style.selectedItemContainer}>   
-      <div className={`${style.selectedItem} ${style.seriesSelectedItem}`}>
-        {video && (
-          <>
-          
-            <iframe src={`https://www.youtube.com/embed/${video.id}`} className={style.iframe} title="Video Player" frameBorder="0" allowFullScreen></iframe>
-        
-            <div className={style.posterDetails}>
-              <Link to="/home" className={style.link}>Home</Link>
-              <div className={style.linkContainer}>
-                <div className={style.details}>
-                  <h2 className={style.title}>{video.snippet.title}</h2>
-                  {/* Add more details here if needed */}
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+   <>
+   <PageDetailsDataContainer Data={MoviesDataTrailer} />
+   </>
+ )
+
+}
+
+export const PageDetailsWebSeriesPlay = () => {
+
+  return (
+   <>
+    <PageDetailsDataContainer Data={WebSeriesData} />
+   </>
+ )
+
+}
+
+export const PlayYouTube = () => {
+
+  return (
+   <>
+    <YouTubeVideo />
+   </>
+  );
+};
+
+export const PlayYouTubeMovies = () => {
+
+  return (
+   <>
+    <YouTubeVideo />
+   </>
   );
 };

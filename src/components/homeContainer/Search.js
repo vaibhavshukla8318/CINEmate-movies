@@ -81,7 +81,7 @@ const SearchComponent = () => {
         <ul>
           
           {AnimeData.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
-            <Link key={item.id} to={`/detailsAnime/${item.id}`} className={style.link}>
+            <Link key={item.id} to={`/playAnime/${item.id}`} className={style.link}>
               <li key={item.id} onClick={() => handleItemClick(item)}>
                 <img src={item.poster} alt={item.title} />
                 <span className={style.title}>{item.title}</span>
@@ -91,7 +91,7 @@ const SearchComponent = () => {
             </Link>
           ))}
           {MoviesDataTrailer.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
-            <Link key={item.id} to={`/detailsMovies/${item.id}`} className={style.link}>
+            <Link key={item.id} to={`/playMovies/${item.id}`} className={style.link}>
               <li key={item.id} onClick={() => handleItemClick(item)}>
                 <img src={item.poster} alt={item.title} />
                 <span className={style.title}>{item.title}</span>
@@ -101,7 +101,7 @@ const SearchComponent = () => {
             </Link>
           ))}
           {WebSeriesData.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase())).map(item => (
-            <Link key={item.id} to={`/detailsWebSeries/${item.id}`} className={style.link}>
+            <Link key={item.id} to={`/playWebSeries/${item.id}`} className={style.link}>
               <li key={item.id} onClick={() => handleItemClick(item)}>
                 <img src={item.poster} alt={item.title} />
                 <span className={style.title}>{item.title}</span>
