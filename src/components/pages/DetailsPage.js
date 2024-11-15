@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { TeaserData, AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Data';
-import Navbar from '../homeContainer/Navbar';
 import style from '../../css/detailsPage.module.css';
 
 // Using Api
@@ -99,10 +97,10 @@ export const PageDetailsTeaserSearch = () => {
             <div className={style.details}>
               <h2>{trailerDetails.title}</h2>
               {/* <p>{trailerDetails.overview}</p> */}
-              {/* <p className={style.rating}>
-                <img src={Star} />
-                {trailerDetails.vote_average}
-              </p> */}
+              <p className={style.rating}>
+                {/* <img src={Star} /> */}
+                {/* {trailerDetails.vote_average} */}
+              </p>
               <p>{trailerDetails.release_date}</p>
               {/* <p>{trailerDetails.genres.map(genre => genre.name).join(', ')}</p> */}
             </div> 
@@ -254,160 +252,3 @@ export const PageDetailsTeaserWebSearch = () => {
     </div>
   );
 };
-
-
-
-
-export const PageDetailsAnime = ({ addToWatchLater, watchLaterItems }) => {
-
-  const { itemId } = useParams();
-  const posterDetails = AnimeData.find(item => item.id === parseInt(itemId));
-
-  const isItemInWatchLater = (item) => {
-    return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-  };
-
-  return (
-    <>
-      <Navbar />
-      {posterDetails && (
-      <>
-       <div className={style.blur} style={{background:`url(${posterDetails.poster})`}}>
-        
-        </div>
-      <div className={style.detailsContainer}>
-        {/* <img src={posterDetails.poster} alt={posterDetails.title} /> */}
-        <div className={style.details}>
-          <Link to="/home" className={style.link}>Home</Link>
-          <Link to="/anime" className={style.link}>Back</Link>
-          <h2>{posterDetails.title}</h2>
-          <div className={style.watch}>
-            {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'anime')}>Watch now</Link> */}
-            <Link to={`/playAnime/${posterDetails.id}`} className={style.watchNow}>Watch now</Link>
-            <div className={style.watchLater}>
-                {isItemInWatchLater(posterDetails) ? (
-                    <p className={style.watchLater}>Added</p>
-                  ) : (
-                    <p onClick={() => addToWatchLater(posterDetails)} >Watch Later</p>
-                  )}
-              </div>
-          </div>
-          <p className={style.plot}>{posterDetails.plot}</p>
-          <p className={style.year}>Release date: &nbsp; <span>{posterDetails.year}</span></p>
-          <ul className={style.genre}>
-            Genre:
-            {posterDetails.genre && posterDetails.genre.map((genre, index) => (
-              <li key={index}>{genre}</li>
-            ))}
-          </ul>
-
-        </div>
-      </div>
-     
-      </>
-      )}
-    </>
-  );
-}
-
-export const PageDetailsMovies = ({ addToWatchLater, watchLaterItems }) => {
-
-
-  const { itemId } = useParams();
-  const posterDetails = MoviesDataTrailer.find(item => item.id === parseInt(itemId));
-
-  const isItemInWatchLater = (item) => {
-    return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-  };
-
-  return (
-    <>
-      <Navbar />
-      {posterDetails && (
-        <>
-          <div className={style.blur} style={{background:`url(${posterDetails.poster})`}}>
-        
-          </div>
-          <div className={style.detailsContainer}>
-            {/* <img src={posterDetails.poster} alt={posterDetails.title} /> */}
-            <div className={style.details}>
-              <Link to="/home" className={style.link}>Home</Link>
-              <Link to="/movies" className={style.link}>Back</Link>
-              <h2>{posterDetails.title}</h2>
-              <div className={style.watch}>
-                {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'movies')}>Watch now</Link> */}
-                <Link to={`/playMovies/${posterDetails.id}`} className={style.watchNow}>Watch now</Link>
-                <div className={style.watchLater}>
-                    {isItemInWatchLater(posterDetails) ? (
-                        <p className={style.watchLater}>Added</p>
-                      ) : (
-                        <p onClick={() => addToWatchLater(posterDetails)} >Watch Later</p>
-                      )}
-                  </div>
-              </div>
-              <p className={style.plot}>{posterDetails.plot}</p>
-              <p className={style.year}>Release date: &nbsp; <span>{posterDetails.year}</span></p>
-              <ul className={style.genre}>
-                Genre:
-                {posterDetails.genre && posterDetails.genre.map((genre, index) => (
-                  <li key={index}>{genre}</li>
-                ))}
-              </ul>
-
-            </div>
-          </div>
-        </>  
-      )} 
-    </>
-  );
-}
-
-export const PageDetailsWebSeries = ({ addToWatchLater, watchLaterItems }) => {
-
-  const { itemId } = useParams();
-  const posterDetails = WebSeriesData.find(item => item.id === parseInt(itemId));
-
-  const isItemInWatchLater = (item) => {
-    return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-  };
-
-  return (
-    <>
-      <Navbar />
-      {posterDetails && (
-        <>
-          <div className={style.blur} style={{background:`url(${posterDetails.poster})`}}>
-          
-          </div>
-          <div className={style.detailsContainer}>
-            {/* <img src={posterDetails.poster} alt={posterDetails.title} /> */}
-            <div className={style.details}>
-              <Link to="/home" className={style.link}>Home</Link>
-              <Link to="/webSeries" className={style.link}>Back</Link>
-              <h2>{posterDetails.title}</h2>
-              <div className={style.watch}>
-                {/* <Link to="/play" className={style.watchNow} onClick={() => togglePlay(posterDetails.video, 'webSeries')}>Watch now</Link> */}
-                <Link to={`/playWebSeries/${posterDetails.id}`} className={style.watchNow}>Watch now</Link>
-                <div className={style.watchLater}>
-                  {isItemInWatchLater(posterDetails) ? (
-                      <p className={style.watchLater}>Added</p>
-                    ) : (
-                      <p onClick={() => addToWatchLater(posterDetails)} >Watch Later</p>
-                    )}
-                </div>
-              </div>
-              <p className={style.plot}>{posterDetails.plot}</p>
-              <p className={style.year}>Release date: &nbsp; <span>{posterDetails.year}</span></p>
-              <ul className={style.genre}>
-                Genre:
-                {posterDetails.genre && posterDetails.genre.map((genre, index) => (
-                  <li key={index}>{genre}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </>
-      )}
-    </>
-  );
-}

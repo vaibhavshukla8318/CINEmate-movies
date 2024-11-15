@@ -396,13 +396,13 @@ const CardContainer = () => {
       
       <YouTubeMrBeast title="Mr. Beast" linkPage="/youTubeMovies" linkPlay="/youTubeLink" />
       
-      <TeaserContainer title="Anime" linkPage="/anime" linkPlay="/detailsAnime" movies={AnimeData} />
+      {/* <TeaserContainer title="Anime" linkPage="/anime" linkPlay="/detailsAnime" movies={AnimeData} /> */}
 
-      <TeaserContainer title="Anime Trailer" linkPage="/anime" linkPlay="/detailsAnime" movies={AnimeData} />
+      <TeaserContainer title="Anime Trailer" linkPage="/anime" linkPlay="/playAnime" movies={AnimeData} />
     
-      <TeaserContainer title="Movies Trailer" linkPage="/movies" linkPlay="/detailsMovies" movies={MoviesDataTrailer} />
+      <TeaserContainer title="Movies Trailer" linkPage="/movies" linkPlay="/playMovies" movies={MoviesDataTrailer} />
       
-      <TeaserContainer title="TV Trailer" linkPage="/webSeries" linkPlay="/detailsWebSeries" movies={WebSeriesData} />
+      <TeaserContainer title="TV Trailer" linkPage="/webSeries" linkPlay="/playWebSeries" movies={WebSeriesData} />
     </div>
   );
 };

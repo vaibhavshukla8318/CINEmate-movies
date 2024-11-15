@@ -7,29 +7,29 @@ import Add from '../../images/add.png'
 import Added from '../../images/correct.png'
 import style from '../../css/AllFunContainer.module.css'
 import Sidebar from '../homeContainer/Sidebar';
-import {Link} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import axios from 'axios'
 
 
-export const AnimeContainer = ({addToWatchLater, watchLaterItems}) => { 
+const DataContainer = ({addToWatchLater, watchLaterItems, title, Data, linkPage}) => { 
 
   
-  const isItemInWatchLater = (item) => {
-    return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-  };
+  // const isItemInWatchLater = (item) => {
+  //   return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
+  // };
 
     return (
       <>
         <Sidebar />
         <div className={style.cardContainer}>
-          <h1>Anime</h1>
+          <h1>{title}</h1>
           
             <div className={style.imageContainer}>
    
-               {AnimeData.slice().reverse().map((image) => (
+               {Data.slice().reverse().map((image) => (
                 <>
                   <div className={style.posterContainer} key={image.id}>
-                    <Link to={`/detailsAnime/${image.id}`} >
+                    <Link to={`${linkPage}/${image.id}`} >
                       <img
                         src={image.poster}
                         className={style.poster}
@@ -42,11 +42,11 @@ export const AnimeContainer = ({addToWatchLater, watchLaterItems}) => {
                         <p>{image.year}</p>
                       </div>
                     </Link>
-                    {isItemInWatchLater(image) ? (
+                    {/* {isItemInWatchLater(image) ? (
                     <img src={Added} className={style.addedWatchLater} alt='added'/>
                     ) : (
                       <img src={Add} className={style.addWatchLater} onClick={() => addToWatchLater(image)} alt='add' />
-                    )}
+                    )} */}
                   </div>
                  
                 </>
@@ -57,96 +57,6 @@ export const AnimeContainer = ({addToWatchLater, watchLaterItems}) => {
       </>  
     );
   }
-
-
-export const MoviesContainer = ({addToWatchLater, watchLaterItems}) =>  { 
-
-  const isItemInWatchLater = (item) => {
-    return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-  };
-  
-    return (
-      <>
-        <Sidebar />
-        <div className={style.cardContainer}>
-          <h1>Movies</h1>
-          
-            <div className={style.imageContainer}>
-             
-               {MoviesDataTrailer.slice().reverse().map((image) => (
-                <div className={style.posterContainer} key={image.id}>
-                  <Link to={`/detailsMovies/${image.id}`}>
-                    <img
-                      src={image.poster}
-                      className={style.poster}
-                      alt="img"
-                    />
-                    <img className={style.playButton} src={Play} alt="Play"/>
-                    <div className={style.details}>
-                      <h3>{image.title}</h3>
-                      <p>{image.year}</p>
-                    </div>
-                  </Link>
-                  {isItemInWatchLater(image) ? (
-                  <img src={Added} className={style.addedWatchLater} />
-                ) : (
-                  <img src={Add} className={style.addWatchLater} onClick={() => addToWatchLater(image)} />
-                )}
-                </div>
-              ))}
-            
-          </div>
-        </div>
-      </>  
-    );
-  }
-
-
-export const WebSeriesContainer = ({ addToWatchLater, watchLaterItems }) => { 
-  
-const isItemInWatchLater = (item) => {
-  return watchLaterItems.some((watchLaterItem) => watchLaterItem.title === item.title);
-};
-
-  return (
-  
-      <>
-        <Sidebar />
-        <div className={style.cardContainer}>
-          <h1>Web Series</h1>  
-            <div className={style.imageContainer}>    
-               {WebSeriesData.slice().reverse().map((image) => (
-                <div className={style.posterContainer} key={image.id}>
-                 <Link to={`/detailsWebSeries/${image.id}`}>
-                  <img
-                    src={image.poster}
-                    className={style.poster}
-                    alt="img"
-                  />
-                  <img className={style.playButton} src={Play} alt="Play"/>
-                  <div className={style.details}>
-                    <h3>{image.title}</h3>
-                    <p>{image.year}</p>
-                  </div>
-                </Link>
-               
-                {isItemInWatchLater(image) ? (
-                  <img src={Added} className={style.addedWatchLater} />
-                ) : (
-                  <img src={Add} className={style.addWatchLater} onClick={() => addToWatchLater(image)} />
-                )}
-                </div>
-              ))}
-            
-          </div>
-        </div>
-      </>  
-    );
-  }
-
-
-
-
 
   const YouTubeContainer = ({title, video, playlistID}) =>{
 
@@ -206,7 +116,37 @@ const isItemInWatchLater = (item) => {
       </>  
     );
   }
+
+
   
+  export const AnimeContainer = () => { 
+  
+    return (
+      <>
+        <DataContainer title="Anime" Data={AnimeData} linkPage="/playAnime" />
+      </>  
+    );
+  }
+
+export const MoviesContainer = () => { 
+
+    return (
+      <>
+        <DataContainer title="Movies" Data={MoviesDataTrailer} linkPage="/playMovies" />
+      </>  
+    );
+  }
+
+
+export const WebSeriesContainer = () => { 
+
+    return (
+      <>
+        <DataContainer title="Web Series" Data={WebSeriesData} linkPage="/playWebSeries" />
+      </>  
+    );
+  }
+
   
   export const YouTubeVideoContainer = () => {
   

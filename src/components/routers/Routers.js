@@ -81,9 +81,9 @@ export const DetailsPagesRouters = () => {
        <Route path="/searchWebTeaser/:itemId" element={<PageDetailsTeaserWebSearch/>} />
           <Route path="/searchTeaser/:itemId" element={<PageDetailsTeaserSearch/>} />
           {/* <Route path="/detailsTeaser/:itemId" element={<PageDetailsTeaser />} /> */}
-          <Route path="/detailsAnime/:itemId" element={<PageDetailsAnime addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
+          {/* <Route path="/detailsAnime/:itemId" element={<PageDetailsAnime addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
           <Route path="/detailsMovies/:itemId" element={<PageDetailsMovies addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
-          <Route path="/detailsWebSeries/:itemId" element={<PageDetailsWebSeries addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} />
+          <Route path="/detailsWebSeries/:itemId" element={<PageDetailsWebSeries addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems}/>} /> */}
           {/* <Route path="/video/:videoID" element={<PageDetailsYouTube/>} /> */}
     </Routes>
   )
