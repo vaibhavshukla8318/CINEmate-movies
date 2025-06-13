@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { Routes, Route, Router } from 'react-router-dom';
 import { MovieTeaser } from '../pages/trendingContainer/TrendingTrailer';
 import {WebSeriesTeaser} from '../pages/trendingContainer/TrendingTrailerWebSeries'
-import {AnimeContainer, MoviesContainer, WebSeriesContainer, YouTubeVideoContainer, YouTubeMoviesContainer} from '../pages/AllFunContainer.js';
+import {AnimeContainer, MoviesContainer, WebSeriesContainer, YouTubeVideoContainer, YouTubeMoviesContainer, YouTubeClipContainer} from '../pages/AllFunContainer.js';
 import Category from '../pages/categoryContainer/CategoryContainer';
 import SeriesTeaserContainer from '../pages/categoryContainer/CategorySeriesContainer';
 import  {UpcomingMovieTeaser, NowPlayingMovieTeaser, PopularMovieTeaser, TopRatedMovieTeaser}  from '../pages/categoryContainer/CategoryMovies';
 import { AiringTodaySeriesTeaser, OnTheAirSeriesTeaser, PopularSeriesTeaser, TopRatedSeriesTeaser } from '../pages/categoryContainer/CategorySeries';
 import {PageDetailsTeaserWebSearch ,PageDetailsTeaserSearch} from '../pages/DetailsPage';
-import {PageDetailsAnimePlay, PageDetailsMoviesPlay, PageDetailsWebSeriesPlay, PlayYouTube, PlayYouTubeMovies } from '../pages/Play';
+import {PageDetailsAnimePlay, PageDetailsMoviesPlay, PageDetailsWebSeriesPlay, PlayYouTube, PlayYouTubeMovies, PlayYouTubeClip } from '../pages/Play';
 
 export const CardPagesContainerRouters = () => {
 
@@ -44,6 +44,7 @@ export const CardPagesContainerRouters = () => {
           <Route path="/webSeries" element={<WebSeriesContainer addToWatchLater={addToWatchLater} watchLaterItems={watchLaterItems} />} />
           <Route path="/youTubeVideo" element={<YouTubeVideoContainer/>} />
           <Route path="/youTubeMovies" element={<YouTubeMoviesContainer/>} />
+          <Route path="/youTubeClip" element={<YouTubeClipContainer/>} />
     </Routes>
   );
 };
@@ -93,6 +94,7 @@ export const PlayPagesRouters = () =>{
           <Route path="/playWebSeries/:itemId" element={<PageDetailsWebSeriesPlay/>} />
           <Route path="/video/:videoID" element={<PlayYouTube/>} />
           <Route path="/videoMovies/:videoID" element={<PlayYouTubeMovies/>} />
+          <Route path="/videoClip/:videoID" element={<PlayYouTubeClip/>} />
     </Routes> 
   )
 }

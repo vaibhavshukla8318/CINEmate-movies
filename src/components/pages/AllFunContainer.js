@@ -165,3 +165,12 @@ export const WebSeriesContainer = () => {
         </>  
       );
     }
+
+  export const YouTubeClipContainer = () => {
+  
+      return (
+        <>
+          <YouTubeContainer title="Clip" video="/video" playlistID = "PLv1XPZCxNOvVeLo2dJ4xHxGB1nfVw4QXw"/>
+        </>  
+      );
+    }

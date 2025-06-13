@@ -237,3 +237,12 @@ export const PlayYouTubeMovies = () => {
    </>
   );
 };
+
+export const PlayYouTubeClip = () => {
+
+  return (
+   <>
+    <YouTubeVideo />
+   </>
+  );
+};

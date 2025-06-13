@@ -395,6 +395,8 @@ const CardContainer = () => {
 
       
       <YouTubeMrBeast title="Mr. Beast" linkPage="/youTubeMovies" linkPlay="/youTubeLink" />
+
+      <YouTubeContainer title="Clip" linkPage="/youTubeClip" linkPlay="/youTubeLink" videoPlay = "/videoClip" playlistID = "PLv1XPZCxNOvVeLo2dJ4xHxGB1nfVw4QXw"/>
       
       {/* <TeaserContainer title="Anime" linkPage="/anime" linkPlay="/detailsAnime" movies={AnimeData} /> */}
 
