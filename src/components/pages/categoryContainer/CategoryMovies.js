@@ -6,6 +6,8 @@ import BackwardImage from '../../../images/arrowBackward.png'
 import style from '../../../css/AllFunContainer.module.css';
 import { Loading, Error } from '../../LoadingAndError';
 
+
+const api_key = process.env.REACT_APP_API_KEY;
 const TeaserContainer = ({title, trailers, link, handleNextPage, handlePrevPage, currentPage }) => {
   return (
     <>
@@ -48,7 +50,7 @@ export const UpcomingMovieTeaser = () => {
 
   const fetchMovies = async (pageNumber = 1) => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=fe3c2c41cac485e991fabd53535d760b&page=${pageNumber}`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}&page=${pageNumber}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -105,7 +107,7 @@ export const NowPlayingMovieTeaser = () => {
 
   const fetchMovies = async (pageNumber = 1) => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=fe3c2c41cac485e991fabd53535d760b&page=${pageNumber}`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}&page=${pageNumber}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -162,7 +164,7 @@ export const PopularMovieTeaser = () => {
 
   const fetchMovies = async (pageNumber = 1) => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=fe3c2c41cac485e991fabd53535d760b&page=${pageNumber}`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}&page=${pageNumber}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
@@ -219,7 +221,7 @@ export const TopRatedMovieTeaser = () => {
 
   const fetchMovies = async (pageNumber = 1) => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=fe3c2c41cac485e991fabd53535d760b&page=${pageNumber}`);
+      const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}&page=${pageNumber}`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }

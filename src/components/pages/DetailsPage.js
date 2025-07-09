@@ -137,7 +137,7 @@ export const PageDetailsTeaserWebSearch = () => {
   const { itemId } = useParams();
   
   const API_URL = 'https://api.themoviedb.org/3';
-  const API_KEY = 'fe3c2c41cac485e991fabd53535d760b'; 
+  const API_KEY = process.env.REACT_APP_API_KEY; 
 
   const fetchTrailerDetailsWeb = async () => {
     try {

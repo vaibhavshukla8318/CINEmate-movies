@@ -14,7 +14,7 @@ const SearchComponent = () => {
   const searchRef = useRef(null);
 
 
-  const API = "fe3c2c41cac485e991fabd53535d760b"
+  const API = process.env.REACT_APP_API_KEY
   const fetchMovieTrailer = async () => {
     try {
       const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API}&query=${searchTerm}`);

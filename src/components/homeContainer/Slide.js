@@ -11,7 +11,7 @@ const Slide = () => {
   const [videos, setVideos] = useState({});
 
 
-  const API = "fe3c2c41cac485e991fabd53535d760b"
+  const API = process.env.REACT_APP_API_KEY;
   
 
   const fetchData = async () => {

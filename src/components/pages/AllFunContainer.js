@@ -58,7 +58,14 @@ const DataContainer = ({addToWatchLater, watchLaterItems, title, Data, linkPage}
     );
   }
 
-  const YouTubeContainer = ({title, video, playlistID}) =>{
+  const youTubeKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+  const youTubeVideosPageDetailsKey = process.env.REACT_APP_YOUTUBEVIDEOSPAGEDETAILS_API_KEY;
+  const playlistIdYouTube = process.env.REACT_APP_API_PLAYLISTID_YOUTUBE;
+  const playlistIdMovies = process.env.REACT_APP_API_PLAYLISTID_MOVIES;
+  const playlistIdClip = process.env.REACT_APP_API_PLAYLISTID_CLIP;
+  const playlistIdAnimeSceneAndSong = process.env.REACT_APP_API_PLAYLISTID_ANIMESCENEANDSONG
+
+  const YouTubeContainer = ({title, video, playlistID, apiKey}) =>{
 
     const [videos, setVideos] = useState([]);
   
@@ -70,7 +77,7 @@ const DataContainer = ({addToWatchLater, watchLaterItems, title, Data, linkPage}
             params: {
               part: 'snippet',
               playlistId: playlistID,
-              key: 'AIzaSyDsKb2w7pPipyiONQA3SgwaZ1siwwhfTHk', // Replace with your YouTube Data API key
+              key: apiKey, // Replace with your YouTube Data API key
               maxResults: 10 // Adjust as needed
             }
           }
@@ -152,7 +159,7 @@ export const WebSeriesContainer = () => {
   
       return (
         <>
-          <YouTubeContainer title="You Tube" video="/video" playlistID = "PLv1XPZCxNOvX8hG0tEjAEERdo5kt9Q8E_"/>
+          <YouTubeContainer title="You Tube" video="/video" playlistID = {playlistIdYouTube} apiKey={youTubeKey}/>
         </>  
       );
     }
@@ -161,7 +168,7 @@ export const WebSeriesContainer = () => {
   
       return (
         <>
-          <YouTubeContainer title="Movies" video="/video" playlistID = "PLv1XPZCxNOvUzuaGJt1tKLtXUbmXC1vhY"/>
+          <YouTubeContainer title="Movies" video="/video" playlistID = {playlistIdMovies} apiKey={youTubeKey}/>
         </>  
       );
     }
@@ -170,7 +177,16 @@ export const WebSeriesContainer = () => {
   
       return (
         <>
-          <YouTubeContainer title="Clip" video="/video" playlistID = "PLv1XPZCxNOvVeLo2dJ4xHxGB1nfVw4QXw"/>
+          <YouTubeContainer title="Clip" video="/video" playlistID = {playlistIdClip} apiKey={youTubeKey}/>
+        </>  
+      );
+    }
+
+  export const YouTubeVideoSongWithAnimeSceneContainer = () => {
+  
+      return (
+        <>
+          <YouTubeContainer title="Hindi Songs + Anime Scene" video="/video" playlistID = {playlistIdAnimeSceneAndSong} apiKey={youTubeVideosPageDetailsKey}/>
         </>  
       );
     }

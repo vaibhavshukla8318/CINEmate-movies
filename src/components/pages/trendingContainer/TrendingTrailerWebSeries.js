@@ -47,6 +47,8 @@ const TeaserContainer = ({  trailers, link, handleNextPage, handlePrevPage, curr
   );
 };
 
+const api_key = process.env.REACT_APP_API_KEY;
+
 
 export const WebSeriesTeaser = () => {
   const [trailers, setTrailers] = useState([]);
@@ -55,7 +57,7 @@ export const WebSeriesTeaser = () => {
  
     const fetchMovies = async (pageNumber = 1) => {
       try {
-        const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=fe3c2c41cac485e991fabd53535d760b&page=${pageNumber}`);
+        const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${api_key}&page=${pageNumber}`);
         const data = await response.json();
         console.log(data)
         setTrailers(data.results);

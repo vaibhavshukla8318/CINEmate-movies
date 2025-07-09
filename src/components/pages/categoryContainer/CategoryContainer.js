@@ -63,13 +63,15 @@ const CardContainer = ({ title, link, movies }) => {
   );
 };
 
+const api_key = process.env.REACT_APP_API_KEY;
+
 const UpcomingMovie = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}`);
         setMovies(response.data.results);
       } catch (error) {
         console.error('Error fetching movies:', error);
@@ -89,7 +91,7 @@ const NowPlayingMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}`);
         setMovies(response.data.results);
       } catch (error) {
         console.error('Error fetching movies:', error);
@@ -108,7 +110,7 @@ const PopularMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${api_key}`);
         setMovies(response.data.results);
       } catch (error) {
         console.error('Error fetching movies:', error);
@@ -128,7 +130,7 @@ const TopRatedMovie = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${api_key}`);
         setMovies(response.data.results);
       } catch (error) {
         console.error('Error fetching movies:', error);

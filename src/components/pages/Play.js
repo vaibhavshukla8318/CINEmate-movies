@@ -21,7 +21,7 @@ const PageDetails = ({playListID}) => {
           params: {
             part: 'snippet',
             playlistId: playListID,
-            key: 'AIzaSyCbqcEimBIvB4sVM_NDbkiBTcvdWBhVHPc',
+            key: process.env.REACT_APP_YOUTUBEVIDEOSPAGEDETAILS_API_KEY,
             maxResults: 10 
           }
         }
@@ -141,7 +141,10 @@ const PageDetailsDataContainer = ({ Data }) => {
 
 }
 
-export const YouTubeVideo = () => {
+const youTubeKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+const playlistIdAnimeSceneAndSong = process.env.REACT_APP_YOUTUBEVIDEOSPAGEDETAILS_API_KEY;
+
+export const YouTubeVideo = ({apiKey}) => {
   const [video, setVideo] = useState(null);
   const { videoID } = useParams();
 
@@ -152,7 +155,7 @@ export const YouTubeVideo = () => {
           params: {
             part: 'snippet',
             id: videoID,
-            key: 'AIzaSyDsKb2w7pPipyiONQA3SgwaZ1siwwhfTHk', // Replace with your YouTube Data API key
+            key: apiKey,
           }
         }
       );
@@ -196,7 +199,7 @@ export const YouTubeVideo = () => {
 
 export const PageDetailsAnimePlay = () => (
   <>
-  <PageDetails playListID='PL5BT3-cWoWWIq7KFtztkohAfMuomFcuTH'/>
+  <PageDetails playListID={process.env.REACT_APP_API_PLAYLISTID_YOUTUBEVIDEOSPAGEDETAILS}/>
   </>
 )
 
@@ -224,7 +227,7 @@ export const PlayYouTube = () => {
 
   return (
    <>
-    <YouTubeVideo />
+    <YouTubeVideo apiKey={youTubeKey} />
    </>
   );
 };
@@ -233,7 +236,7 @@ export const PlayYouTubeMovies = () => {
 
   return (
    <>
-    <YouTubeVideo />
+    <YouTubeVideo apiKey={youTubeKey} />
    </>
   );
 };
@@ -242,7 +245,16 @@ export const PlayYouTubeClip = () => {
 
   return (
    <>
-    <YouTubeVideo />
+    <YouTubeVideo apiKey={youTubeKey} />
+   </>
+  );
+};
+
+export const PlayYouTubeSongWithAnimeScene = () => {
+
+  return (
+   <>
+    <YouTubeVideo apiKey={playlistIdAnimeSceneAndSong} />
    </>
   );
 };

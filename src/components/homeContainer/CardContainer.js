@@ -10,10 +10,17 @@ import Play from '../../images/play.png';
 
 
 // APIs and KEYs
-const YouTubeKey = "AIzaSyDsKb2w7pPipyiONQA3SgwaZ1siwwhfTHk"
-const API = "fe3c2c41cac485e991fabd53535d760b"
+const YouTubeKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+const API = process.env.REACT_APP_API_KEY;
 
-
+// PlayList IDs
+  const youTubeKey = process.env.REACT_APP_YOUTUBE_API_KEY;
+  const youTubeVideosPageDetailsKey = process.env.REACT_APP_YOUTUBEVIDEOSPAGEDETAILS_API_KEY;
+  const playlistIdYouTube = process.env.REACT_APP_API_PLAYLISTID_YOUTUBE;
+  const playlistIdMovies = process.env.REACT_APP_API_PLAYLISTID_MOVIES;
+  const playlistIdClip = process.env.REACT_APP_API_PLAYLISTID_CLIP;
+  const playlistIdMrBeast = process.env.REACT_APP_API_PLAYLISTID_MRBEAST;
+  const playlistIdAnimeSceneAndSong = process.env.REACT_APP_API_PLAYLISTID_ANIMESCENEANDSONG;
 
 // TeaserContainerAPI component
 const TeaserContainerAPI = ({ title, linkPage, linkPlay }) => {
@@ -89,27 +96,26 @@ const TeaserContainerAPI = ({ title, linkPage, linkPlay }) => {
 };
 
 
-
-// YouTube Fetching
-const YouTubeContainer = ({ title, linkPage, videoPlay, playlistID }) =>{
-
+const YouTubeContainer = ({ title, linkPage, videoPlay, playlistID, apiKey }) => {
   const [slidePositions, setSlidePositions] = useState(0);
   const [videos, setVideos] = useState([]);
 
   const fetchYouTubeVideos = async () => {
     try {
-      // Make a request to the YouTube Data API to fetch videos
       const response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/playlistItems`, {
+        `https://www.googleapis.com/youtube/v3/playlistItems`,
+        {
           params: {
             part: 'snippet',
             playlistId: playlistID,
-            key: YouTubeKey, // Replace with your YouTube Data API key
-            maxResults: 10 // Adjust as needed
+            // key: YouTubeKey,
+            key: apiKey,
+            maxResults: 10
           }
         }
       );
       setVideos(response.data.items);
+      console.log("Videos of Youtube", response.data.items);
     } catch (error) {
       console.error('Error fetching YouTube videos:', error);
     }
@@ -117,17 +123,42 @@ const YouTubeContainer = ({ title, linkPage, videoPlay, playlistID }) =>{
 
   useEffect(() => {
     fetchYouTubeVideos();
-  }, []); 
+  }, []);
 
-
-  const handleSlide = direction => {
+  const handleSlide = (direction) => {
     if (direction === 'left' && slidePositions > 0) {
-      setSlidePositions(prevPosition => prevPosition - 1);
+      setSlidePositions((prev) => prev - 1);
     } else if (direction === 'right' && slidePositions < videos.length - 1) {
-      setSlidePositions(prevPosition => prevPosition + 1);
+      setSlidePositions((prev) => prev + 1);
     }
   };
 
+
+  if (videos.length === 0) {
+  return (
+    <div style={{
+      padding: '2rem',
+      margin: '2rem 3rem',
+      backgroundColor: '#1c1c1e',
+      color: '#fff',
+      borderRadius: '10px',
+      textAlign: 'center',
+      fontFamily: 'Arial, sans-serif',
+      border: '1px solid #333',
+      boxShadow: '0 0 12px rgba(255, 255, 255, 0.05)'
+    }}>
+      <h3 style={{ fontSize: '1.8rem', color: '#ccc' }}>{title}</h3>
+      <p style={{
+        fontSize: '1.4rem',
+        marginTop: '1rem',
+        color: '#aaa',
+        fontStyle: 'italic'
+      }}>
+        🎬 Videos Coming Soon...
+      </p>
+    </div>
+  );
+}
 
 
   return (
@@ -144,44 +175,31 @@ const YouTubeContainer = ({ title, linkPage, videoPlay, playlistID }) =>{
           alt="backwardArrow"
         />
         {videos.map((movie, index) => (
-          <>
-            <div
+          <div
             className={style.desktopView}
             key={movie.id}
-            style={{ transform: `translateX(${slidePositions * -5.7}vw)`}}
+            style={{ transform: `translateX(${slidePositions * -5.7}vw)` }}
+          >
             
-            >
-            
-            <div className={style.poster} ></div>
+            <div className={style.poster}></div>
             <img className={style.playButton} src={Play} alt="playButton" />
-            
-              <Link to={`${videoPlay}/${movie.snippet.resourceId.videoId}`}>
-                <div className={style.mobileView}>
-
-                </div>
-              </Link>
-            
-              <Link to={`${videoPlay}/${movie.snippet.resourceId.videoId}`}>
-                  <div className={`${style.backgroundTransparent} ${style.youTubebackgroundTransparent}`}>
-                    
-                  </div>
-                
-                  {/* <div className={style.textContainer}>
-                    <h3 className={style.title}>{movie.snippet.title}</h3>
-                    <p className={style.date}>{movie.year}</p>
-                  </div> */}
-                  {/* <div className={style.minimalOpacity}>
-                  
-                  </div> */}
-                  <iframe title='teaser' className={`${style.cardIframe} ${style.youTubeIframe}`} src={`https://www.youtube.com/embed/${movie.snippet.resourceId.videoId}`} frameBorder="0" allow='autoplay'
-                  allowFullScreen></iframe>
-                 
-                  <div>
-
-                  </div>
-              </Link>
-            </div>
-          </>
+            <Link to={`${videoPlay}/${movie.snippet.resourceId.videoId}`}>
+              <div className={style.mobileView}></div>
+            </Link>
+            <Link to={`${videoPlay}/${movie.snippet.resourceId.videoId}`}>
+              <div className={`${style.backgroundTransparent} ${style.youTubebackgroundTransparent}`}></div>
+              <iframe
+                title='YouTube video'
+                className={`${style.cardIframe} ${style.youTubeIframe}`}
+                src={`https://www.youtube.com/embed/${movie.snippet.resourceId.videoId}`}
+                frameBorder="0"
+                allow='autoplay'
+                allowFullScreen
+              ></iframe>
+              <div></div>
+            </Link>
+          
+          </div>
         ))}
         <img
           className={style.forwordArrow}
@@ -192,8 +210,8 @@ const YouTubeContainer = ({ title, linkPage, videoPlay, playlistID }) =>{
       </div>
     </div>
   );
+};
 
-}
 
 
 // YouTube Movies
@@ -209,14 +227,17 @@ const YouTubeMrBeast = ({ title, linkPage, linkPlay, movies }) => {
         `https://www.googleapis.com/youtube/v3/playlistItems`, {
           params: {
             part: 'snippet',
-            playlistId: 'PLv1XPZCxNOvUwiPIwSkUn86q8GdEVHV8h',
+            playlistId: playlistIdMrBeast, // Replace with your YouTube playlist ID
             key: YouTubeKey, // Replace with your YouTube Data API key
             maxResults: 10 // Adjust as needed
           }
         }
       );
+      if(!response.ok){
+        return console.error('Error fetching YouTube videos:', response.statusText);
+      }
       setVideos(response.data.items);
-    } catch (error) {
+    } catch (error) {                                                          
       console.error('Error fetching YouTube videos:', error);
     }
   };
@@ -372,6 +393,7 @@ const TeaserContainer = ({ title, linkPage, linkPlay, movies }) => {
             </div>
           </>
         ))}
+      
         <img
           className={style.forwordArrow}
           src={ForwardArrowImage}
@@ -388,15 +410,20 @@ const CardContainer = () => {
     <div className={style.collectionOfCardContainer}>
       <TeaserContainerAPI title="Teaser" linkPage="/moviesTrailerPage" linkPlay="/searchTeaser"/>
 
-      <YouTubeContainer title="YouTube" linkPage="/youTubeVideo" linkPlay="/youTubeLink" videoPlay = "/video" playlistID = "PLv1XPZCxNOvX8hG0tEjAEERdo5kt9Q8E_"/>
+      <YouTubeContainer title="YouTube" linkPage="/youTubeVideo" linkPlay="/youTubeLink" videoPlay = "/video" playlistID = {playlistIdYouTube} apiKey={youTubeKey}/>
 
       
-      <YouTubeContainer title="Movies" linkPage="/youTubeMovies" linkPlay="/youTubeLink" videoPlay = "/videoMovies" playlistID = "PLv1XPZCxNOvUzuaGJt1tKLtXUbmXC1vhY"/>
+      <YouTubeContainer title="Movies" linkPage="/youTubeMovies" linkPlay="/youTubeLink" videoPlay = "/videoMovies" playlistID = {playlistIdMovies} apiKey={youTubeKey}/>
+
+      <YouTubeContainer title="Anime" linkPage="/youTubeAnime" linkPlay="/youTubeLink" videoPlay="" playlistID=""  />
+
+      <YouTubeContainer title="Hindi Songs + Anime Scene" linkPage="/youTubeVideoSongWithAnimeScene" linkPlay="/youTubeLink" videoPlay="/videoSongWithAnimeScene" playlistID={playlistIdAnimeSceneAndSong} apiKey={youTubeVideosPageDetailsKey}/>
 
       
-      <YouTubeMrBeast title="Mr. Beast" linkPage="/youTubeMovies" linkPlay="/youTubeLink" />
+      {/* This Playlist is not available for youtube */}
+      {/* <YouTubeMrBeast title="Mr. Beast" linkPage="/youTubeMovies" linkPlay="/youTubeLink" />  */}
 
-      <YouTubeContainer title="Clip" linkPage="/youTubeClip" linkPlay="/youTubeLink" videoPlay = "/videoClip" playlistID = "PLv1XPZCxNOvVeLo2dJ4xHxGB1nfVw4QXw"/>
+      <YouTubeContainer title="Clip" linkPage="/youTubeClip" linkPlay="/youTubeLink" videoPlay = "/videoClip" playlistID = {playlistIdClip} apiKey={youTubeKey}/>
       
       {/* <TeaserContainer title="Anime" linkPage="/anime" linkPlay="/detailsAnime" movies={AnimeData} /> */}
 
@@ -405,6 +432,7 @@ const CardContainer = () => {
       <TeaserContainer title="Movies Trailer" linkPage="/movies" linkPlay="/playMovies" movies={MoviesDataTrailer} />
       
       <TeaserContainer title="TV Trailer" linkPage="/webSeries" linkPlay="/playWebSeries" movies={WebSeriesData} />
+
     </div>
   );
 };

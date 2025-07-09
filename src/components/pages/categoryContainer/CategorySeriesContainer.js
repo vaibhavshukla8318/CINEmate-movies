@@ -63,13 +63,15 @@ const CardContainer = ({ title, link, series }) => {
   );
 };
 
+const api_key = process.env.REACT_APP_API_KEY
+
 const AiringTodaySeries = () => {
   const [series, setseries] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/tv/airing_today?api_key=${api_key}`);
         setseries(response.data.results);
       } catch (error) {
         console.error('Error fetching series:', error);
@@ -89,7 +91,7 @@ const OnTheAirSeries = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/tv/on_the_air?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/tv/on_the_air?api_key=${api_key}`);
         setseries(response.data.results);
       } catch (error) {
         console.error('Error fetching series:', error);
@@ -108,7 +110,7 @@ const PopularSeries = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${api_key}`);
         setseries(response.data.results);
       } catch (error) {
         console.error('Error fetching series:', error);
@@ -128,7 +130,7 @@ const TopRatedSeries = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=fe3c2c41cac485e991fabd53535d760b`);
+        const response = await axios.get(`https://api.themoviedb.org/3/tv/top_rated?api_key=${api_key}`);
         setseries(response.data.results);
       } catch (error) {
         console.error('Error fetching series:', error);
