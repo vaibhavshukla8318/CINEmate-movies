@@ -7,6 +7,7 @@ import { AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Da
 import BackwardArrowImage from '../../images/backword.png';
 import ForwardArrowImage from '../../images/forword.png';
 import Play from '../../images/play.png';
+import poster from '../../images/poster.jpeg';
 
 
 // APIs and KEYs
@@ -134,35 +135,35 @@ const YouTubeContainer = ({ title, linkPage, videoPlay, playlistID, apiKey }) =>
   };
 
 
-  if (videos.length === 0) {
-  return (
-    <div style={{
-      padding: '2rem',
-      margin: '2rem 3rem',
-      backgroundColor: '#1c1c1e',
-      color: '#fff',
-      borderRadius: '10px',
-      textAlign: 'center',
-      fontFamily: 'Arial, sans-serif',
-      border: '1px solid #333',
-      boxShadow: '0 0 12px rgba(255, 255, 255, 0.05)'
-    }}>
-      <h3 style={{ fontSize: '1.8rem', color: '#ccc' }}>{title}</h3>
-      <p style={{
-        fontSize: '1.4rem',
-        marginTop: '1rem',
-        color: '#aaa',
-        fontStyle: 'italic'
-      }}>
-        🎬 Videos Coming Soon...
-      </p>
-    </div>
-  );
-}
+//   if (videos.length === 0) {
+//   return (
+//     <div style={{
+//       padding: '2rem',
+//       margin: '2rem 3rem',
+//       backgroundColor: '#1c1c1e',
+//       color: '#fff',
+//       borderRadius: '10px',
+//       textAlign: 'center',
+//       fontFamily: 'Arial, sans-serif',
+//       border: '1px solid #333',
+//       boxShadow: '0 0 12px rgba(255, 255, 255, 0.05)'
+//     }}>
+//       <h3 style={{ fontSize: '1.8rem', color: '#ccc' }}>{title}</h3>
+//       <p style={{
+//         fontSize: '1.4rem',
+//         marginTop: '1rem',
+//         color: '#aaa',
+//         fontStyle: 'italic'
+//       }}>
+//         🎬 Videos Coming Soon...
+//       </p>
+//     </div>
+//   );
+// }
 
 
   return (
-    <div className={style.cardContainer}>
+   videos.length > 0 ?  <div className={style.cardContainer}>
       <div className={style.topContainer}>
         <h3>{title}</h3>
         <Link to={linkPage} className={style.link}>View All</Link>
@@ -209,6 +210,7 @@ const YouTubeContainer = ({ title, linkPage, videoPlay, playlistID, apiKey }) =>
         />
       </div>
     </div>
+    : null
   );
 };
 
@@ -363,7 +365,14 @@ const TeaserContainer = ({ title, linkPage, linkPlay, movies }) => {
             onMouseEnter={() => handleImageHover(movie.id)}
             onMouseLeave={() => handleImageHover(null)}
             >
-            <img src={movie.poster} className={style.poster} alt="poster" />
+            <img 
+            src={movie.poster} 
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = poster;
+            }}
+            className={style.poster} 
+            alt="poster" />
             <img className={style.playButton} src={Play} alt="playButton" />
               <Link to={`${linkPlay}/${movie.id}`}>
                 <div className={style.mobileView}>

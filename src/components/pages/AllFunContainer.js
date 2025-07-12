@@ -5,6 +5,7 @@ import {AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Dat
 import Play from '../../images/play.png';
 import Add from '../../images/add.png'
 import Added from '../../images/correct.png'
+import poster from '../../images/poster.jpeg'
 import style from '../../css/AllFunContainer.module.css'
 import Sidebar from '../homeContainer/Sidebar';
 import {Link, useParams} from 'react-router-dom'
@@ -32,6 +33,10 @@ const DataContainer = ({addToWatchLater, watchLaterItems, title, Data, linkPage}
                     <Link to={`${linkPage}/${image.id}`} >
                       <img
                         src={image.poster}
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = poster;
+                        }}
                         className={style.poster}
                         alt="img"
                       />
