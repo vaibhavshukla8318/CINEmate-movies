@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import style from '../../css/Navbar.module.css';
 import errorImage from '../../images/error.png';
 import { AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Data';
+import { useContextAPI } from '../../contextAPI/ContextApi';
 
 const SearchComponent = () => {
   const [trailer, setTrailer] = useState([]);
@@ -12,6 +13,8 @@ const SearchComponent = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedItem, setSelectedItem] = useState(null);
   const searchRef = useRef(null);
+
+  const {movies} = useContextAPI();
 
 
   const API = process.env.REACT_APP_API_KEY
@@ -67,6 +70,7 @@ const SearchComponent = () => {
     setSearchTerm('');
   };
 
+
   return (
     <div className={style.inputContainer}>
       <input
@@ -75,6 +79,8 @@ const SearchComponent = () => {
         onChange={handleSearch}
         placeholder="Search..."
         ref={searchRef}
+        disabled = {movies.length===0 ? true : false}
+        style={movies.length===0 ? {"cursor":"not-allowed"}: {"cursor":"unset"}}
       />
     
       {searchTerm && (

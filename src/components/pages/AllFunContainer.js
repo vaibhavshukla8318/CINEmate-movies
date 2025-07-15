@@ -1,14 +1,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/iframe-has-title */
-import React, {useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {AnimeData, MoviesDataTrailer, WebSeriesData } from '../dataContainer/Data.js';
 import Play from '../../images/play.png';
-import Add from '../../images/add.png'
-import Added from '../../images/correct.png'
 import poster from '../../images/poster.jpeg'
 import style from '../../css/AllFunContainer.module.css'
 import Sidebar from '../homeContainer/Sidebar';
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 

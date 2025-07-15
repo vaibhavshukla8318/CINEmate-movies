@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import style from '../../css/Slide.module.css';
 import Star from '../../images/stars.png'
 
 const Slide = () => {
-  const [movies, setMovies] = useState([]);
+  const [moviesSlide, setMovies] = useState([]);
   const [slidePosition, setSlidePosition] = useState(0);
   const [slideDetails, setSlideDetails] = useState({});
   const [isPlaying, setIsPlaying] = useState(true);
   const [hoveredImageIndex, setHoveredImageIndex] = useState(null); 
   const [videos, setVideos] = useState({});
-
 
   const API = process.env.REACT_APP_API_KEY;
   
@@ -24,7 +23,7 @@ const Slide = () => {
         fetchVideosForMovie(movie.id);
       });
     } catch (error) {
-      console.error('Error fetching movies:', error);
+      console.error('Error fetching moviesSlide:', error);
     }
   };
 
@@ -48,7 +47,7 @@ const Slide = () => {
   };
 
   const clickImage = (index) => {
-    setSlideDetails(movies[index]);
+    setSlideDetails(moviesSlide[index]);
   };
 
   const togglePlay = () => {
@@ -66,9 +65,9 @@ const Slide = () => {
 
 
   return (
-    <>
     
-      <div className={style.slide}>
+    
+    <div className={style.slide}>
 
       <div className={style.slideWatch}>
           <div className={style.watchNow}> 
@@ -81,7 +80,7 @@ const Slide = () => {
             </div>
           </div>
           <div className={style.miniSlideContainer}>
-            {movies.map((movie, index) => (
+            {moviesSlide.map((movie, index) => (
               <div
                 key={index}
                 className={style.miniSlide}
@@ -97,25 +96,26 @@ const Slide = () => {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className={style.slideDetails}>
-        <h2>{slideDetails.title}</h2>
-        <div className={style.seasonContainer}>
-          <p className={style.year}>{slideDetails.release_date} &nbsp; &#x2022;</p>
-          <p className={style.language}>{slideDetails.original_language}</p>
-        </div>
-        <p className={style.plot}>{slideDetails.overview}</p>
-        <div className={style.ratingContainer}>
-          <span className={style.rating}> 
-             <img src={Star} alt="img"/>
-            {slideDetails.vote_average}
-          </span>
-          <span className={style.ratingCount}> Count: {slideDetails.vote_count}</span>
-        </div>
-        </div>
       </div>
-    </>
+
+      <div className={style.slideDetails}>
+      <h2>{slideDetails.title}</h2>
+      <div className={style.seasonContainer}>
+        <p className={style.year}>{slideDetails.release_date} &nbsp; &#x2022;</p>
+        <p className={style.language}>{slideDetails.original_language}</p>
+      </div>
+      <p className={style.plot}>{slideDetails.overview}</p>
+      <div className={style.ratingContainer}>
+        <span className={style.rating}> 
+            <img src={Star} alt="img"/>
+          {slideDetails.vote_average}
+        </span>
+        <span className={style.ratingCount}> Count: {slideDetails.vote_count}</span>
+      </div>
+      </div>
+    </div>
+     
+    
   );
 };
 

@@ -8,11 +8,12 @@ import BackwardArrowImage from '../../images/backword.png';
 import ForwardArrowImage from '../../images/forword.png';
 import Play from '../../images/play.png';
 import poster from '../../images/poster.jpeg';
+import { useContextAPI } from '../../contextAPI/ContextApi';
+
 
 
 // APIs and KEYs
 const YouTubeKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-const API = process.env.REACT_APP_API_KEY;
 
 // PlayList IDs
   const youTubeKey = process.env.REACT_APP_YOUTUBE_API_KEY;
@@ -26,23 +27,9 @@ const API = process.env.REACT_APP_API_KEY;
 // TeaserContainerAPI component
 const TeaserContainerAPI = ({ title, linkPage, linkPlay }) => {
   const [slidePositions, setSlidePositions] = useState(0);
-  const [movies, setMovies] = useState([]);
+
+  const {movies} = useContextAPI();
   
-  // fetching API
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API}`);
-        setMovies(response.data.results);
-       
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
 
   const handleSlide = direction => {
     if (direction === 'left' && slidePositions > 0) {
@@ -415,9 +402,11 @@ const TeaserContainer = ({ title, linkPage, linkPlay, movies }) => {
 };
 
 const CardContainer = () => {
+
+  
   return (
     <div className={style.collectionOfCardContainer}>
-      <TeaserContainerAPI title="Teaser" linkPage="/moviesTrailerPage" linkPlay="/searchTeaser"/>
+      <TeaserContainerAPI title="Teaser" linkPage="/moviesTrailerPage" linkPlay="/searchTeaser" />
 
       <YouTubeContainer title="YouTube" linkPage="/youTubeVideo" linkPlay="/youTubeLink" videoPlay = "/video" playlistID = {playlistIdYouTube} apiKey={youTubeKey}/>
 
@@ -443,6 +432,7 @@ const CardContainer = () => {
       <TeaserContainer title="TV Trailer" linkPage="/webSeries" linkPlay="/playWebSeries" movies={WebSeriesData} />
 
     </div>
+    
   );
 };
 
